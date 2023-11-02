@@ -1,9 +1,14 @@
 #include <SFML/Graphics.hpp>
 
+#include <iostream>
+
 int main()
 {
+    int tailleX=800;
+    int tailleY=600;
+
     // Crée une fenêtre SFML
-    sf::RenderWindow window(sf::VideoMode(800, 600), "The world of Soinc");
+    sf::RenderWindow window(sf::VideoMode(tailleX, tailleY), "The world of Soinc");
 
     // Crée un rectangle pour représenter le personnage
 //    sf::RectangleShape character(sf::Vector2f(50, 100));
@@ -22,21 +27,6 @@ int main()
         return EXIT_FAILURE;
     }
 
-    // Pour mes test
-
-    sf::Text textRight;
-    textRight.setFont(font); // Définissez la police
-    textRight.setString("Right"); // Définissez le texte
-    textRight.setCharacterSize(24); // Définissez la taille de la police
-    textRight.setFillColor(sf::Color::Red); // Définissez la couleur du texte
-
-    sf::Text textLeft;
-    textLeft.setFont(font); // Définissez la police
-    textLeft.setString("Left"); // Définissez le texte
-    textLeft.setCharacterSize(24); // Définissez la taille de la police
-    textLeft.setFillColor(sf::Color::Red); // Définissez la couleur du texte
-
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -51,16 +41,21 @@ int main()
         // Dessine le sol et le personnage
         window.draw(MapNow);
 
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            MapNow.move(.01f, .0f);
-//            window.draw(textLeft);
+        // Move forward
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+            && -MapNow.getPosition().x + tailleX < map1.getSize().x){
+            MapNow.move(-.1f, .0f);
+//            std::cout << "Position x de fin page: " << -MapNow.getPosition().x + tailleX << " | Taille : " << map1.getSize().x << std::endl;
+        }
+        // Back down
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && MapNow.getPosition().x < 0) {
+            MapNow.move(.1f, .0f);
+//            std::cout << "Position x : " << -MapNow.getPosition().x << " < " << 0 << std::endl;
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            MapNow.move(-.01f, .0f);
-//            window.draw(textRight);
-        }
+        // Jump
+
+        // Verfie if die
 
         window.display();
     }
