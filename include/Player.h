@@ -6,22 +6,22 @@
 
 class Player
 {
-    public:
-        Player();
-        virtual ~Player();
-        Player(const Player& other);
-        Player& operator=(const Player& other);
-        friend std::ostream& operator<<(std::ostream& out, const Player& player);
+public:
+    Player();
+    virtual ~Player();
+    Player(const Player& other);
+    Player& operator=(const Player& other);
+    friend std::ostream& operator<<(std::ostream& out, const Player& player);
 
 
-        // Action
-        int Die();
+    // Action
+    int Die();
 
-    protected:
+protected:
 
-    private:
-        Player(int numberOfLifeVar);
-        int numberOfLife;
+private:
+    Player(int numberOfLifeVar);
+    int numberOfLife;
 };
 
 #endif // PLAYER_H
