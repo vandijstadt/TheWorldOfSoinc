@@ -39,14 +39,14 @@ private:
 
     char sol = '-';
     char drapeau = '|';
-
+    sf::RectangleShape *PremieBlock;
+    sf::RectangleShape *dernierBlock;
     void _move();
     void _forward();
     void _back();
     void _jump();
 
-    // Pour ecrire en console
-    sf::Mutex consoleMutex;
+
 
 };
 

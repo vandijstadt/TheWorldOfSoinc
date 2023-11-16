@@ -51,15 +51,30 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
             else if(drapeau==MOmatrix[i][j])
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 500));
-                tmp.setFillColor(sf::Color::Blue);
+                tmp.setFillColor(sf::Color::Red);
                 tmp.setPosition(50 * j,50 * i);
                 IGmatrix.push_back(tmp);
 
 //                std::cerr << i << ":" << j << std::endl;
             }
-
         }
     }
+ sf::RectangleShape tmp(sf::Vector2f(50, 50));
+ tmp.setFillColor(sf::Color::Green);
+                tmp.setPosition(25,25);
+    PremieBlock = &tmp;
+    dernierBlock = &tmp;
+
+    for(sf::RectangleShape x :IGmatrix)
+        if(x.getPosition().x < PremieBlock->getPosition().x)
+            std::cerr << " ";
+//            PremieBlock=&x;
+//        else if(x.getPosition().x>dernierBlock->getPosition().x)
+//            std::cerr << " ";
+//            dernierBlock=&x;
+
+//    PremieBlock->setFillColor(sf::Color::Red);
+
 
 }
 
@@ -69,8 +84,7 @@ IGCarte::~IGCarte()
 }
 void IGCarte::update()
 {
-    window.clear(sf::Color::Black);
-
+    window.clear(sf::Color::Cyan);
 //    window.draw(MapNow);
     for(sf::RectangleShape x :IGmatrix)
         window.draw(x);
@@ -100,8 +114,6 @@ void IGCarte::_forward()
         for(sf::RectangleShape &e :IGmatrix)
             e.move(-5.0f, 0.0f);
 
-//            e.setPosition(e.getPosition().x - 150, e.getPosition().y);
-//        MapNow.move(speedOfPlayer, .0f);
         std::cerr << "Avancer !" << std::endl;
     }
 }
@@ -134,10 +146,16 @@ void IGCarte::_jump()
     player.move(velocity);
 
 // Si le joueur atteint le niveau du sol
-    if (player.getPosition().y >= 500)
+    int hauteurSol=500;
+
+    for(sf::RectangleShape &e :IGmatrix)
+        if(e.getPosition().x == player.getPosition().x)
+            hauteurSol = e.getPosition().y;
+
+    if (player.getPosition().y >= hauteurSol)
     {
         // Ajuster la position du joueur au niveau du sol
-        player.setPosition(player.getPosition().x, 500);
+        player.setPosition(player.getPosition().x, hauteurSol);
 
         // Réinitialiser la vélocité verticale et l'état du saut
         velocity.y = 0;
