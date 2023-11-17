@@ -6,7 +6,7 @@
 #include <string>
 #include <iostream>
 #include <chrono>
-
+#include <fstream>
 #include <iomanip>
 #include <sstream>
 
@@ -50,17 +50,23 @@ private:
 
     char sol = '-';
     char drapeau = '|';
+    char mob = 'x';
     char mur = '*';
     char mur_invisble = '[';
 
 //    sf::RectangleShape *PremieBlock;
 //    sf::RectangleShape *dernierBlock;
+    std::ofstream logFile;
 
     void _move();
     void _forward();
     void _back();
     void _jump();
+
+    void actionWhenInteractWithRectange(sf::RectangleShape e);
+
     string formatedNumber(int number);
+
 
 
 

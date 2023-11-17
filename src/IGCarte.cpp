@@ -1,5 +1,4 @@
 #include "IGCarte.h"
-#include <fstream>
 
 IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window(window), MOmatrix(matrix)
 {
@@ -29,7 +28,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
     gravity = sf::Vector2f(0.0f, 0.5f);
     velocity = sf::Vector2f(0.0f, 0.0f);
 
-    std::ofstream logFile("log.txt", std::ios::trunc);
+    logFile = std::ofstream("log.txt", std::ios::trunc);
 
     // Date et heure actuel
     auto currentTime = std::chrono::system_clock::now();
@@ -67,10 +66,17 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
             else if(mur == MOmatrix[i][j])
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 50));
-                tmp.setFillColor(sf::Color::Red);
+                tmp.setFillColor(sf::Color::Yellow);
                 tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
                 logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+            }
+            else if(mob==MOmatrix[i][j])
+            {
+                sf::RectangleShape tmp(sf::Vector2f(50, 50)); // TODO : mettre un rond pour plus de comprehension
+                tmp.setFillColor(sf::Color::Red);
+                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
+                IGmatrix.push_back(tmp);
             }
             else if(drapeau==MOmatrix[i][j])
             {
@@ -82,13 +88,13 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
 
         }
     }
-    logFile.close();
-
 }
 
 IGCarte::~IGCarte()
 {
     //dtor
+
+    logFile.close();
 }
 void IGCarte::update()
 {
@@ -130,9 +136,9 @@ void IGCarte::_forward()
             // Vérifier s'il y a une collision entre le joueur et la case rouge
             if (playerBounds.intersects(blockBounds))
             {
-                if(e.getFillColor()==sf::Color::Blue){ // TODO : gerer la reussite
-                    window.close();
-                }
+
+                actionWhenInteractWithRectange(e);
+
                 player.setPosition(e.getPosition().x - playerBounds.width - 1, player.getPosition().y);
                 cerr << "Collision avec une case rouge devant !" << endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
@@ -162,6 +168,8 @@ void IGCarte::_back()
             // Vérifier s'il y a une collision entre le joueur et la case rouge
             if (playerBounds.intersects(blockBounds))
             {
+                actionWhenInteractWithRectange(e);
+
                 player.setPosition(e.getPosition().x + blockBounds.width + 1, player.getPosition().y);
                 std::cerr << "Collision avec une case rouge derriere !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
@@ -199,26 +207,22 @@ void IGCarte::_jump()
         // Vérifier s'il y a une collision entre le joueur et une case rouge
         if (playerBounds.intersects(blockBounds))
         {
-            // Ajuster la position du joueur au-dessus de la case rouge
-            player.setPosition(player.getPosition().x, blockBounds.top - playerBounds.height);
+            if(player.getPosition().y > e.getPosition().y)
+            {
+                // Ajuster la position du joueur au-dessus de la case
+                cerr << "en dessous" << endl;
+                player.setPosition(player.getPosition().x, blockBounds.top + playerBounds.height + (playerBounds.height/3));
+            }
+            else if(player.getPosition().y < e.getPosition().y)
+            {
+                cerr << "Aux dessus" << endl;
+                // Ajuster la position du joueur en-dessous de la case
+                player.setPosition(player.getPosition().x, blockBounds.top - playerBounds.height);
+            }
+
+            actionWhenInteractWithRectange(e);
 
             // Réinitialiser la vélocité verticale et l'état du saut
-            velocity.y = 0;
-            isJumping = false;
-        }
-    }
-
-    for (const sf::RectangleShape &e : IGmatrix)
-    {
-        // TODO : Quand le block est aux dessus ils skip et passe aux dessus
-        sf::FloatRect blockBounds = e.getGlobalBounds();
-
-        // Vérifier s'il y a une collision entre le joueur et la case rouge
-        if (playerBounds.intersects(blockBounds))
-        {
-//            player.setPosition(e.getPosition().x, player.getPosition().y-1);
-            std::cerr << "Collision avec une case rouge en dessous !" << std::endl;
-
             velocity.y = 0;
             isJumping = false;
         }
@@ -230,6 +234,22 @@ void IGCarte::_jump()
 
 }
 
+// TODO Cree une fonction pour verifier si on touche une couleur sa fait quoi
+
+
+void IGCarte::actionWhenInteractWithRectange(sf::RectangleShape e)
+{
+    if(e.getFillColor()==sf::Color::Blue)  // TODO : gerer la reussite
+    {
+        window.close();
+    }
+    else if(e.getFillColor()==sf::Color::Red)  // TODO : gerer la mort par un mob
+    {
+        window.close();
+    }
+}
+
+// Pour la console
 string IGCarte::formatedNumber(int number)
 {
     std::ostringstream oss;
