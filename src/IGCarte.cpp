@@ -37,7 +37,10 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
     string timeString = std::ctime(&time);
 
     string texte = "==================== " + timeString + " ===================="; // Le texte de debut de fichier
-    texte.erase(std::remove_if(texte.begin(), texte.end(), [](char c) { return c == '\n'; }), texte.end()); // Supprime un retour a la ligne
+    texte.erase(std::remove_if(texte.begin(), texte.end(), [](char c)
+    {
+        return c == '\n';
+    }), texte.end()); // Supprime un retour a la ligne
 
     logFile << texte << endl ;
 
@@ -72,7 +75,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
             }
             else if(drapeau==MOmatrix[i][j])
             {
-                sf::RectangleShape tmp(sf::Vector2f(50, 500));
+                sf::RectangleShape tmp(sf::Vector2f(50, 50));
                 tmp.setFillColor(sf::Color::Blue);
                 tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
@@ -127,7 +130,10 @@ void IGCarte::_forward()
 
             // Vérifier s'il y a une collision entre le joueur et la case rouge
             if (playerBounds.intersects(blockBounds))
-                        {
+            {
+                if(e.getFillColor()==sf::Color::Blue){ // TODO : gerer la reussite
+                    window.close();
+                }
                 player.setPosition(e.getPosition().x - playerBounds.width - 1, player.getPosition().y);
                 std::cerr << "Collision avec une case rouge devant !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
@@ -204,7 +210,8 @@ void IGCarte::_jump()
     }
 
     for (const sf::RectangleShape &e : IGmatrix)
-    { // TODO : Quand le block est aux dessus ils skip et passe aux dessus
+    {
+        // TODO : Quand le block est aux dessus ils skip et passe aux dessus
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
         // Vérifier s'il y a une collision entre le joueur et la case rouge
@@ -217,13 +224,15 @@ void IGCarte::_jump()
             isJumping = false;
         }
     }
-    if(player.getPosition().y>window.getSize().y+playerBounds.getSize().y){
+    if(player.getPosition().y>window.getSize().y+playerBounds.getSize().y)
+    {
         window.close(); // TODO : gerer la mort
     }
 
 }
 
-string IGCarte::formatedNumber(int number){
+string IGCarte::formatedNumber(int number)
+{
     std::ostringstream oss;
     oss << std::setw(4) << std::setfill('0') << number;
     return oss.str();
