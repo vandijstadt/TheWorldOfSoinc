@@ -31,8 +31,8 @@ protected:
 private:
     sf::RenderWindow &window;
 
-    std::vector<std::vector<char>> MOmatrix;
-    std::vector<sf::RectangleShape> IGmatrix;
+    vector<vector<char>> MOmatrix;
+    vector<sf::RectangleShape> IGmatrix;
 
     sf::Font font;
     sf::CircleShape player;

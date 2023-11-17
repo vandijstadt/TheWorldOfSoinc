@@ -22,7 +22,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
 
 
     // Create a point to represent the character
-    player.setRadius(25);
+    player.setRadius(20);
     player.setFillColor(sf::Color::Blue);
     player.setPosition(200, 450);
 
