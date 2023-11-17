@@ -117,7 +117,7 @@ void IGCarte::_forward()
             // Vérifier s'il y a une collision entre le joueur et la case rouge
             if (playerBounds.intersects(blockBounds)) // TODO : si il est derrier il dit qu'il est devant
             {
-//                player.setPosition(e.getPosition().x-e.getSize().x-1,e.getPosition().y);
+                player.setPosition(e.getPosition().x - playerBounds.width - 1, player.getPosition().y);
                 std::cerr << "Collision avec une case rouge devant !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
             }
@@ -146,7 +146,7 @@ void IGCarte::_back()
             // Vérifier s'il y a une collision entre le joueur et la case rouge
             if (playerBounds.intersects(blockBounds))
             {
-//                player.setPosition(e.getPosition().x+e.getSize().x+5,e.getPosition().y);
+                player.setPosition(e.getPosition().x + blockBounds.width + 1, player.getPosition().y);
                 std::cerr << "Collision avec une case rouge derriere !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
             }
