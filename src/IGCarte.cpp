@@ -39,7 +39,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
     string texte = "==================== " + timeString + " ===================="; // Le texte de debut de fichier
     texte.erase(std::remove_if(texte.begin(), texte.end(), [](char c) { return c == '\n'; }), texte.end()); // Supprime un retour a la ligne
 
-    logFile << texte << endl ; // TODO : ajouter l'heure
+    logFile << texte << endl ;
 
 //     A supprimer
     int rows = MOmatrix.size(); // 12
@@ -56,7 +56,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 50));
                 tmp.setFillColor(sf::Color::Green);
-                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - tmp.getSize().y);
+                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
 
 
@@ -66,7 +66,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 50));
                 tmp.setFillColor(sf::Color::Red);
-                tmp.setPosition(tmp.getSize().y * j, window.getSize().y - tmp.getSize().y - 50); //Le -50 le met au dessus du sol mais il faudrait le faire de façon automatique pour pouvoir en ajouter ou on veut
+                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
                 logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << std::endl;
             }
@@ -74,7 +74,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 500));
                 tmp.setFillColor(sf::Color::Blue);
-                tmp.setPosition(50 * j,50 * i);
+                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
             }
 
@@ -126,8 +126,8 @@ void IGCarte::_forward()
             sf::FloatRect blockBounds = e.getGlobalBounds();
 
             // Vérifier s'il y a une collision entre le joueur et la case rouge
-            if (playerBounds.intersects(blockBounds)) // TODO : si il est derrier il dit qu'il est devant
-            {
+            if (playerBounds.intersects(blockBounds))
+                        {
                 player.setPosition(e.getPosition().x - playerBounds.width - 1, player.getPosition().y);
                 std::cerr << "Collision avec une case rouge devant !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
@@ -203,15 +203,22 @@ void IGCarte::_jump()
         }
     }
 
-// Si le joueur atteint le niveau du sol
-    if (player.getPosition().y >= 500)
-    {
-        // Ajuster la position du joueur au niveau du sol
-        player.setPosition(player.getPosition().x, 500);
+    for (const sf::RectangleShape &e : IGmatrix)
+    { // TODO : Quand le block est aux dessus ils skip et passe aux dessus
+        sf::FloatRect blockBounds = e.getGlobalBounds();
 
-        // Réinitialiser la vélocité verticale et l'état du saut
-        velocity.y = 0;
-        isJumping = false;
+        // Vérifier s'il y a une collision entre le joueur et la case rouge
+        if (playerBounds.intersects(blockBounds))
+        {
+//            player.setPosition(e.getPosition().x, player.getPosition().y-1);
+            std::cerr << "Collision avec une case rouge en dessous !" << std::endl;
+
+            velocity.y = 0;
+            isJumping = false;
+        }
+    }
+    if(player.getPosition().y>window.getSize().y+playerBounds.getSize().y){
+        window.close(); // TODO : gerer la mort
     }
 
 }
