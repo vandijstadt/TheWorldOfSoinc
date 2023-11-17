@@ -5,8 +5,17 @@
 
 #include <string>
 #include <iostream>
+#include <chrono>
+
+#include <iomanip>
+#include <sstream>
 
 #include <IGCarte.h>
+
+using std::string;
+using std::endl;
+using std::cout;
+using std::cerr;
 
 class IGCarte
 {
@@ -43,12 +52,14 @@ private:
     char mur = '*';
     char mur_invisble = '[';
 
-    sf::RectangleShape *PremieBlock;
-    sf::RectangleShape *dernierBlock;
+//    sf::RectangleShape *PremieBlock;
+//    sf::RectangleShape *dernierBlock;
+
     void _move();
     void _forward();
     void _back();
     void _jump();
+    string formatedNumber(int number);
 
 
 

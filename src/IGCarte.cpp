@@ -30,7 +30,16 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
     velocity = sf::Vector2f(0.0f, 0.0f);
 
     std::ofstream logFile("log.txt", std::ios::trunc);
-    logFile << "============= ====================\n"; // TODO : ajouter l'heure
+
+    // Date et heure actuel
+    auto currentTime = std::chrono::system_clock::now();
+    std::time_t time = std::chrono::system_clock::to_time_t(currentTime);
+    string timeString = std::ctime(&time);
+
+    string texte = "==================== " + timeString + " ===================="; // Le texte de debut de fichier
+    texte.erase(std::remove_if(texte.begin(), texte.end(), [](char c) { return c == '\n'; }), texte.end()); // Supprime un retour a la ligne
+
+    logFile << texte << endl ; // TODO : ajouter l'heure
 
 //     A supprimer
     int rows = MOmatrix.size(); // 12
@@ -49,7 +58,9 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
                 tmp.setFillColor(sf::Color::Green);
                 tmp.setPosition(tmp.getSize().y * j,window.getSize().y - tmp.getSize().y);
                 IGmatrix.push_back(tmp);
-                logFile << "Bloc vert ajouté - Position : (" << tmp.getPosition().x << ", " << tmp.getPosition().y << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << std::endl;
+
+
+                logFile << "Bloc vert ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << std::endl;
             }
             else if(mur == MOmatrix[i][j])
             {
@@ -57,7 +68,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
                 tmp.setFillColor(sf::Color::Red);
                 tmp.setPosition(tmp.getSize().y * j, window.getSize().y - tmp.getSize().y - 50); //Le -50 le met au dessus du sol mais il faudrait le faire de façon automatique pour pouvoir en ajouter ou on veut
                 IGmatrix.push_back(tmp);
-                logFile << "Bloc rouge ajouté - Position : (" << tmp.getPosition().x << ", " << tmp.getPosition().y << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << std::endl;
+                logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << std::endl;
             }
             else if(drapeau==MOmatrix[i][j])
             {
@@ -203,4 +214,10 @@ void IGCarte::_jump()
         isJumping = false;
     }
 
+}
+
+string IGCarte::formatedNumber(int number){
+    std::ostringstream oss;
+    oss << std::setw(4) << std::setfill('0') << number;
+    return oss.str();
 }
