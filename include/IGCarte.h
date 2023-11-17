@@ -13,6 +13,7 @@
 #include <IGCarte.h>
 
 using std::string;
+using std::vector;
 using std::endl;
 using std::cout;
 using std::cerr;

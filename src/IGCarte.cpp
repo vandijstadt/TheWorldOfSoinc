@@ -1,12 +1,12 @@
 #include "IGCarte.h"
 #include <fstream>
 
-IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix) : window(window), MOmatrix(matrix)
+IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window(window), MOmatrix(matrix)
 {
     // Create a font
     if (!font.loadFromFile("files/SuperMario256.ttf"))
     {
-        std::cout << EXIT_FAILURE << std::endl;
+        cout << EXIT_FAILURE << endl;
     }
 
 //    // Create a map
@@ -44,11 +44,10 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
 
     logFile << texte << endl ;
 
-//     A supprimer
-    int rows = MOmatrix.size(); // 12
-    int cols = MOmatrix[0].size(); // 20
+    int rows = MOmatrix.size();
+    int cols = MOmatrix[0].size();
 
-    std::cerr << rows << "/" << cols << std::endl;
+    cerr << rows << "/" << cols << endl;
 
     int i,j;
     for (i = 0; i < rows; i++)
@@ -63,7 +62,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
                 IGmatrix.push_back(tmp);
 
 
-                logFile << "Bloc vert ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << std::endl;
+                logFile << "Bloc vert ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
             else if(mur == MOmatrix[i][j])
             {
@@ -71,7 +70,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
                 tmp.setFillColor(sf::Color::Red);
                 tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
-                logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << std::endl;
+                logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
             else if(drapeau==MOmatrix[i][j])
             {
@@ -135,7 +134,7 @@ void IGCarte::_forward()
                     window.close();
                 }
                 player.setPosition(e.getPosition().x - playerBounds.width - 1, player.getPosition().y);
-                std::cerr << "Collision avec une case rouge devant !" << std::endl;
+                cerr << "Collision avec une case rouge devant !" << endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
             }
         }
@@ -143,7 +142,7 @@ void IGCarte::_forward()
         for(sf::RectangleShape &e :IGmatrix)
             e.move(-5.0f, 0.0f);
 
-        std::cerr << "Avancer !" << std::endl;
+        cerr << "Avancer !" << endl;
     }
 }
 
