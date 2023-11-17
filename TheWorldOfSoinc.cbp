@@ -46,6 +46,7 @@
 		<Unit filename="files/map1.png" />
 		<Unit filename="include/IGCarte.h" />
 		<Unit filename="include/MOPlayer.h" />
+		<Unit filename="log.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/IGCarte.cpp" />
 		<Unit filename="src/MOPlayer.cpp" />

@@ -30,6 +30,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix
     velocity = sf::Vector2f(0.0f, 0.0f);
 
     std::ofstream logFile("log.txt", std::ios::trunc);
+    logFile << "============= ====================\n"; // TODO : ajouter l'heure
 
 //     A supprimer
     int rows = MOmatrix.size(); // 12
@@ -114,8 +115,9 @@ void IGCarte::_forward()
             sf::FloatRect blockBounds = e.getGlobalBounds();
 
             // Vérifier s'il y a une collision entre le joueur et la case rouge
-            if (playerBounds.intersects(blockBounds))
+            if (playerBounds.intersects(blockBounds)) // TODO : si il est derrier il dit qu'il est devant
             {
+//                player.setPosition(e.getPosition().x-e.getSize().x-1,e.getPosition().y);
                 std::cerr << "Collision avec une case rouge devant !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
             }
@@ -144,7 +146,8 @@ void IGCarte::_back()
             // Vérifier s'il y a une collision entre le joueur et la case rouge
             if (playerBounds.intersects(blockBounds))
             {
-                std::cerr << "Collision avec une case rouge devant !" << std::endl;
+//                player.setPosition(e.getPosition().x+e.getSize().x+5,e.getPosition().y);
+                std::cerr << "Collision avec une case rouge derriere !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
             }
         }
