@@ -35,12 +35,13 @@
 	<string>
 	<iostream>
 
-1699952829 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/IGCarte.h
+1700203447 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/IGCarte.h
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
 	<IGCarte.h>
 
-1699953393 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/IGCarte.cpp
+1700203542 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/IGCarte.cpp
 	"IGCarte.h"
+	<fstream>
 

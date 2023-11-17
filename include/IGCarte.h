@@ -37,8 +37,12 @@ private:
     sf::Vector2f velocity; // Initial velocity
     bool isJumping = false;
 
+
     char sol = '-';
     char drapeau = '|';
+    char mur = '*';
+    char mur_invisble = '[';
+
     sf::RectangleShape *PremieBlock;
     sf::RectangleShape *dernierBlock;
     void _move();
