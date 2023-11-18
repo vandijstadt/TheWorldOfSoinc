@@ -1,4 +1,4 @@
-#include "MOPlayer.h"
+#include "Modele/MOPlayer.h"
 
 MOPlayer::MOPlayer():numberOfLife(5)
 {

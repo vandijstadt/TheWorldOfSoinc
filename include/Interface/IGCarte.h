@@ -10,7 +10,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include <IGCarte.h>
+#include <Interface/IGCarte.h>
 
 using std::string;
 using std::vector;

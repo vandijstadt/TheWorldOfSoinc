@@ -1,4 +1,4 @@
-#include "IGCarte.h"
+#include "Interface/IGCarte.h"
 
 IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window(window), MOmatrix(matrix)
 {
