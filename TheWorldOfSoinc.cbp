@@ -14,6 +14,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include" />
+					<Add directory="include/Modele" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics" />
@@ -29,6 +30,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="include" />
+					<Add directory="include/Modele" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -49,10 +51,12 @@
 		<Unit filename="files/SuperMario256.ttf" />
 		<Unit filename="files/map1.png" />
 		<Unit filename="include/Interface/IGCarte.h" />
+		<Unit filename="include/Modele/MOMap.h" />
 		<Unit filename="include/Modele/MOPlayer.h" />
 		<Unit filename="log.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Interface/IGCarte.cpp" />
+		<Unit filename="src/Modele/MOMap.cpp" />
 		<Unit filename="src/Modele/MOPlayer.cpp" />
 		<Extensions />
 	</Project>

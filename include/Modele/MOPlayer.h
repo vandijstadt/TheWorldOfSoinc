@@ -18,6 +18,10 @@ public:
     // Action
     int Die();
 
+    //Recuperation
+    bool getGameOver();
+    int getNumberOfLife();
+
 protected:
 
 private:
