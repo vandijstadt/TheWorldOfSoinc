@@ -490,3 +490,23 @@
 	<sstream>
 	<Interface/IGCarte.h>
 
+1700325917 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGCarte.cpp
+	"Interface/IGCarte.h"
+
+1700325917 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGCarte.h
+	<SFML/Graphics.hpp>
+	<string>
+	<iostream>
+	<chrono>
+	<fstream>
+	<iomanip>
+	<sstream>
+	<Interface/IGCarte.h>
+
+1700305232 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOPlayer.cpp
+	"Modele/MOPlayer.h"
+
+1699358883 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Modele/MOPlayer.h
+	<string>
+	<iostream>
+
