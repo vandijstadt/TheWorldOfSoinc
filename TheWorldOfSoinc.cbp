@@ -41,15 +41,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="cb.bmp" />
 		<Unit filename="files/SuperMario256.ttf" />
 		<Unit filename="files/map1.png" />
-		<Unit filename="include/IGCarte.h" />
-		<Unit filename="include/MOPlayer.h" />
+		<Unit filename="include/Interface/IGCarte.h" />
+		<Unit filename="include/Modele/MOPlayer.h" />
 		<Unit filename="log.txt" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/IGCarte.cpp" />
-		<Unit filename="src/MOPlayer.cpp" />
+		<Unit filename="src/Interface/IGCarte.cpp" />
+		<Unit filename="src/Modele/MOPlayer.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
