@@ -8,17 +8,6 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
         cout << EXIT_FAILURE << endl;
     }
 
-//    // Create a map
-//    if (!map1.loadFromFile("files/map1.png"))
-//    {
-//        std::cout << EXIT_FAILURE << std::endl;
-//    }
-//
-//    // Create a sprite
-//    MapNow.setTexture(map1);
-//    // Resize sprite
-//    MapNow.setScale(static_cast<float>(SCREEN_HEIGHT) / map1.getSize().y, static_cast<float>(SCREEN_HEIGHT) / map1.getSize().y);
-
 
     // Create a point to represent the character
     player.setRadius(20);
@@ -184,7 +173,7 @@ void IGCarte::_back()
 
 void IGCarte::_jump()
 {
-// Vérifier si la touche de saut est pressée et le personnage n'est pas déjà en train de sauter
+    // Vérifier si la touche de saut est pressée et le personnage n'est pas déjà en train de sauter
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !isJumping)
     {
         // Appliquer une vélocité vers le haut pour le saut
@@ -193,45 +182,46 @@ void IGCarte::_jump()
         std::cerr << "Sauter !" << std::endl;
     }
 
-// Appliquer la gravité à la vélocité
+    // Appliquer la gravité à la vélocité
     velocity += gravity;
 
-// Déplacer le joueur en fonction de la vélocité
+    // Déplacer le joueur en fonction de la vélocité
     player.move(velocity);
 
     sf::FloatRect playerBounds = player.getGlobalBounds();
-    for (const sf::RectangleShape &e : IGmatrix)
+    for (sf::RectangleShape &e : IGmatrix)
     {
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
         // Vérifier s'il y a une collision entre le joueur et une case rouge
         if (playerBounds.intersects(blockBounds))
         {
-            if(player.getPosition().y > e.getPosition().y)
+            if (velocity.y > 0) // Si le personnage est en train de tomber
             {
                 // Ajuster la position du joueur au-dessus de la case
-                cerr << "en dessous" << endl;
-                player.setPosition(player.getPosition().x, blockBounds.top + playerBounds.height + (playerBounds.height/3));
-            }
-            else if(player.getPosition().y < e.getPosition().y)
-            {
-                cerr << "Aux dessus" << endl;
-                // Ajuster la position du joueur en-dessous de la case
                 player.setPosition(player.getPosition().x, blockBounds.top - playerBounds.height);
+
+                // Réinitialiser la vélocité verticale et l'état du saut
+                velocity.y = 0;
+                isJumping = false;
+            }
+            else if (velocity.y < 0) // Si le personnage est en train de monter
+            {
+                // Ajuster la position du joueur en-dessous de la case
+                player.setPosition(player.getPosition().x, blockBounds.top + blockBounds.height);
+
+                // Inverser la direction du mouvement vertical
+                velocity.y = 0;
             }
 
             actionWhenInteractWithRectange(e);
-
-            // Réinitialiser la vélocité verticale et l'état du saut
-            velocity.y = 0;
-            isJumping = false;
         }
     }
-    if(player.getPosition().y>window.getSize().y+playerBounds.getSize().y)
-    {
-        window.close(); // TODO : gerer la mort
-    }
 
+    if (player.getPosition().y > window.getSize().y + playerBounds.getSize().y)
+    {
+        window.close(); // TODO : gérer la mort
+    }
 }
 
 // TODO Cree une fonction pour verifier si on touche une couleur sa fait quoi
