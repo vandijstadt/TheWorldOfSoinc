@@ -1,4 +1,4 @@
-==================== Sat Nov 18 18:38:02 2023 ====================
+==================== Mon Nov 20 11:11:38 2023 ====================
 Bloc rouge ajouté - Position : (1050, 0200), Taille : (50, 50)
 Bloc rouge ajouté - Position : (0350, 0400), Taille : (50, 50)
 Bloc rouge ajouté - Position : (0450, 0400), Taille : (50, 50)
@@ -20,6 +20,8 @@ Bloc vert ajouté - Position : (1300, 0500), Taille : (50, 50)
 Bloc vert ajouté - Position : (1350, 0500), Taille : (50, 50)
 Bloc vert ajouté - Position : (0000, 0550), Taille : (50, 50)
 Bloc vert ajouté - Position : (0050, 0550), Taille : (50, 50)
+Bloc vert ajouté - Position : (0100, 0550), Taille : (50, 50)
+Bloc vert ajouté - Position : (0150, 0550), Taille : (50, 50)
 Bloc vert ajouté - Position : (0200, 0550), Taille : (50, 50)
 Bloc vert ajouté - Position : (0250, 0550), Taille : (50, 50)
 Bloc vert ajouté - Position : (0300, 0550), Taille : (50, 50)

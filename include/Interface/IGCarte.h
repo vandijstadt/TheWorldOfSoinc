@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <sstream>
 
+#include <Interface/IGSol.h>
 #include <Interface/IGCarte.h>
 
 using std::string;

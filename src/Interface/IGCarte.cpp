@@ -44,9 +44,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
         {
             if(sol==MOmatrix[i][j])
             {
-                sf::RectangleShape tmp(sf::Vector2f(50, 50));
-                tmp.setFillColor(sf::Color::Green);
-                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
+                IGSol tmp(50 * j, window.getSize().y - (50 * (rows-i)));
                 IGmatrix.push_back(tmp);
 
 

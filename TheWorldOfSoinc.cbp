@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add directory="include" />
 					<Add directory="include/Modele" />
+					<Add directory="include/Interface" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics" />
@@ -31,6 +32,7 @@
 					<Add option="-O2" />
 					<Add directory="include" />
 					<Add directory="include/Modele" />
+					<Add directory="include/Interface" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -49,13 +51,15 @@
 			<Add directory="../SFML-2.6.0/lib" />
 		</Linker>
 		<Unit filename="files/SuperMario256.ttf" />
-		<Unit filename="files/map1.png" />
+		<Unit filename="files/sol.png" />
 		<Unit filename="include/Interface/IGCarte.h" />
+		<Unit filename="include/Interface/IGSol.h" />
 		<Unit filename="include/Modele/MOMap.h" />
 		<Unit filename="include/Modele/MOPlayer.h" />
 		<Unit filename="log.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Interface/IGCarte.cpp" />
+		<Unit filename="src/Interface/IGSol.cpp" />
 		<Unit filename="src/Modele/MOMap.cpp" />
 		<Unit filename="src/Modele/MOPlayer.cpp" />
 		<Extensions />

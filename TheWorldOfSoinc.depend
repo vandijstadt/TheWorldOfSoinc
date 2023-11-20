@@ -4,7 +4,7 @@
 
 1698743253 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Action.h
 
-1700329065 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/main.cpp
+1700329091 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/main.cpp
 	<SFML/Graphics.hpp>
 	<Interface/IGCarte.h>
 	<MOMap.h>
@@ -491,10 +491,10 @@
 	<sstream>
 	<Interface/IGCarte.h>
 
-1700325917 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGCarte.cpp
+1700473724 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGCarte.cpp
 	"Interface/IGCarte.h"
 
-1700325917 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGCarte.h
+1700473654 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGCarte.h
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
@@ -502,6 +502,7 @@
 	<fstream>
 	<iomanip>
 	<sstream>
+	<Interface/IGSol.h>
 	<Interface/IGCarte.h>
 
 1700327112 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOPlayer.cpp
@@ -511,9 +512,16 @@
 	<string>
 	<iostream>
 
-1700329033 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOMap.cpp
+1700329104 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOMap.cpp
 	"MOMap.h"
 
 1700328945 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Modele/MOMap.h
 	<vector>
+
+1700474168 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGSol.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1700474470 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGSol.cpp
+	"IGSol.h"
 
