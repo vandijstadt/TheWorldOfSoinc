@@ -256,7 +256,8 @@ void IGCarte::die()
 {
     mOPlayer.Die();
     reset();
-//        window.close();
+    if(mOPlayer.getGameOver())
+        window.close();
 }
 void IGCarte::succes()
 {
