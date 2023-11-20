@@ -231,7 +231,7 @@ void IGCarte::_jump()
 
     if (player.getPosition().y > window.getSize().y + playerBounds.getSize().y)
     {
-        window.close(); // TODO : gérer la mort
+        die();
     }
 }
 
@@ -240,17 +240,29 @@ void IGCarte::_jump()
 
 void IGCarte::actionWhenInteractWithRectange(sf::RectangleShape e)
 {
-    if(e.getFillColor()==sf::Color::Blue)  // TODO : gerer la reussite
+
+    if(e.getFillColor()==sf::Color::Red)  // TODO : gerer la mort par un mob
     {
-        window.close();
+        die();
     }
-    else if(e.getFillColor()==sf::Color::Red)  // TODO : gerer la mort par un mob
+
+    else if(e.getFillColor()==sf::Color::Blue)  // TODO : gerer la reussite
     {
-        mOPlayer.Die();
-        reset();
-//        window.close();
+        succes();
     }
 }
+
+void IGCarte::die()
+{
+    mOPlayer.Die();
+    reset();
+//        window.close();
+}
+void IGCarte::succes()
+{
+    window.close();
+}
+
 
 void IGCarte::reset()
 {
@@ -258,6 +270,8 @@ void IGCarte::reset()
     int taille = IGmatrix.size();
     for(int i = 0 ; i< taille; i++)
         IGmatrix[i].setPosition(IGmatrixPostion[i]);
+
+    player.setPosition(200, 450);
 
 }
 

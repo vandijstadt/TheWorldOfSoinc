@@ -17,15 +17,15 @@
 			<Cursor1 position="578" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/Interface/IGCarte.cpp" open="1" top="1" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Interface/IGCarte.cpp" open="1" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/Interface/IGCarte.h" open="1" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Interface/IGCarte.h" open="1" top="1" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<EditorTabsLayout layout="ccc0ce20655b2a1d006b7ffb00000002=*0;TheWorldOfSoinc:src/Interface/IGCarte.cpp,1;TheWorldOfSoinc:include/Interface/IGCarte.h,2;TheWorldOfSoinc:main.cpp,3;TheWorldOfSoinc:include/Interface/IGSol.h@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=554;besth=198;minw=554;minh=198;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ccc0ce20655b2a1d006b7ffb00000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=0;besth=0;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=10|" />
+	<EditorTabsLayout layout="ccc0ce20655b2a1d006b7ffb00000002=0;TheWorldOfSoinc:src/Interface/IGCarte.cpp,*1;TheWorldOfSoinc:include/Interface/IGCarte.h,2;TheWorldOfSoinc:main.cpp,3;TheWorldOfSoinc:include/Interface/IGSol.h@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=554;besth=198;minw=554;minh=198;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ccc0ce20655b2a1d006b7ffb00000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=0;besth=0;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=10|" />
 </CodeBlocks_layout_file>

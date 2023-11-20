@@ -67,6 +67,9 @@ private:
     void _back();
     void _jump();
 
+    void die();
+    void succes();
+
     void actionWhenInteractWithRectange(sf::RectangleShape e);
 
     string formatedNumber(int number);
