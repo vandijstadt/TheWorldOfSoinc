@@ -1,13 +1,14 @@
 #include "Interface/IGCarte.h"
 
-IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window(window), MOmatrix(matrix)
+IGCarte::IGCarte(sf::RenderWindow &window, MOPlayer &mOPlayer, vector<vector<char>> matrix) : window(window), MOmatrix(matrix)
 {
+    this->mOPlayer = mOPlayer;
+
     // Create a font
     if (!font.loadFromFile("files/SuperMario256.ttf"))
     {
         cout << EXIT_FAILURE << endl;
     }
-
 
     // Create a point to represent the character
     player.setRadius(20);
@@ -31,11 +32,8 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
     }), texte.end()); // Supprime un retour a la ligne
 
     logFile << texte << endl ;
-
     int rows = MOmatrix.size();
     int cols = MOmatrix[0].size();
-
-    cerr << rows << "/" << cols << endl;
 
     int i,j;
     for (i = 0; i < rows; i++)
@@ -46,7 +44,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
             {
                 IGSol tmp(50 * j, window.getSize().y - (50 * (rows-i)));
                 IGmatrix.push_back(tmp);
-
+                IGmatrixPostion.push_back(tmp.getPosition());
 
                 logFile << "Bloc vert ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
@@ -56,6 +54,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
                 tmp.setFillColor(sf::Color::Yellow);
                 tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
+                IGmatrixPostion.push_back(tmp.getPosition());
                 logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
             else if(mob==MOmatrix[i][j])
@@ -64,6 +63,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
                 tmp.setFillColor(sf::Color::Red);
                 tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
+                IGmatrixPostion.push_back(tmp.getPosition());
             }
             else if(drapeau==MOmatrix[i][j])
             {
@@ -71,10 +71,16 @@ IGCarte::IGCarte(sf::RenderWindow &window, vector<vector<char>> matrix) : window
                 tmp.setFillColor(sf::Color::Blue);
                 tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
+                IGmatrixPostion.push_back(tmp.getPosition());
             }
 
         }
     }
+
+
+    text.setFont(font);
+    text.setCharacterSize(20);
+
 }
 
 IGCarte::~IGCarte()
@@ -83,6 +89,7 @@ IGCarte::~IGCarte()
 
     logFile.close();
 }
+
 void IGCarte::update()
 {
     window.clear(sf::Color::Black);
@@ -94,10 +101,16 @@ void IGCarte::update()
 
     _move();
 
-    // Verifier la mort et la fin de jeux
+    // TODO : Verifier la mort et la fin de jeux
+
+    text.setString("Nombre de vie : "+ std::to_string(mOPlayer.getNumberOfLife()));
+    window.draw(text);
+
 
     window.display();
+
 }
+
 void IGCarte::_move()
 {
     _forward();
@@ -233,8 +246,19 @@ void IGCarte::actionWhenInteractWithRectange(sf::RectangleShape e)
     }
     else if(e.getFillColor()==sf::Color::Red)  // TODO : gerer la mort par un mob
     {
-        window.close();
+        mOPlayer.Die();
+        reset();
+//        window.close();
     }
+}
+
+void IGCarte::reset()
+{
+
+    int taille = IGmatrix.size();
+    for(int i = 0 ; i< taille; i++)
+        IGmatrix[i].setPosition(IGmatrixPostion[i]);
+
 }
 
 // Pour la console

@@ -7,15 +7,15 @@
 
 class IGSol : public sf::RectangleShape
 {
-    public:
-        IGSol(int x, int y);
-        virtual ~IGSol();
-        IGSol(const IGSol& other);
-        IGSol& operator=(const IGSol& other);
+public:
+    IGSol(int x, int y);
+    virtual ~IGSol();
+    IGSol(const IGSol& other);
+    IGSol& operator=(const IGSol& other);
 
-    protected:
+protected:
 
-    private:
+private:
 };
 
 #endif // IGSOL_H

@@ -13,6 +13,8 @@
 #include <Interface/IGSol.h>
 #include <Interface/IGCarte.h>
 
+#include <Modele/MOPlayer.h>
+
 using std::string;
 using std::vector;
 using std::endl;
@@ -22,7 +24,7 @@ using std::cerr;
 class IGCarte
 {
 public:
-    IGCarte(sf::RenderWindow &window, std::vector<std::vector<char>> matrix);
+    IGCarte(sf::RenderWindow &window, MOPlayer &player, std::vector<std::vector<char>> matrix);
     virtual ~IGCarte();
 
     void update();
@@ -34,8 +36,10 @@ private:
 
     vector<vector<char>> MOmatrix;
     vector<sf::RectangleShape> IGmatrix;
+    vector<sf::Vector2f> IGmatrixPostion;
 
     sf::Font font;
+    sf::Text text;
     sf::CircleShape player;
     sf::Texture map1;
     sf::Sprite MapNow;
@@ -48,16 +52,15 @@ private:
     sf::Vector2f velocity; // Initial velocity
     bool isJumping = false;
 
-
     char sol = '-';
     char drapeau = '|';
     char mob = 'x';
     char mur = '*';
     char mur_invisble = '[';
 
-//    sf::RectangleShape *PremieBlock;
-//    sf::RectangleShape *dernierBlock;
     std::ofstream logFile;
+
+    MOPlayer mOPlayer;
 
     void _move();
     void _forward();
@@ -67,9 +70,7 @@ private:
     void actionWhenInteractWithRectange(sf::RectangleShape e);
 
     string formatedNumber(int number);
-
-
-
+    void reset();
 
 };
 

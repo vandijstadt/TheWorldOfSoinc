@@ -11,11 +11,12 @@ int main()
 
     MOMap moMap;
 
-
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "The world of Sonic");
     window.setActive(true);
 
-    IGCarte igCarte(window, moMap.Niveau(1));
+    MOPlayer mOPlayer;
+
+    IGCarte igCarte(window, mOPlayer, moMap.Niveau(1));
 
     while (window.isOpen())
     {

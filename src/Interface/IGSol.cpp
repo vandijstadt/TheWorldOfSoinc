@@ -12,7 +12,7 @@ IGSol::IGSol(int x, int y) : RectangleShape(sf::Vector2f(50, 50))
         std::cout << EXIT_FAILURE << std::endl;
     }
 
-    this->setTexture(&texture, true);
+    this->setTexture(&texture);
 }
 
 IGSol::~IGSol()
