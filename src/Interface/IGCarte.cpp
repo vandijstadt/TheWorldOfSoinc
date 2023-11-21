@@ -1,8 +1,8 @@
 #include "Interface/IGCarte.h"
 
-IGCarte::IGCarte(sf::RenderWindow &window, MOPlayer &mOPlayer, vector<vector<char>> matrix) : window(window), MOmatrix(matrix)
+IGCarte::IGCarte(MOPlayer &mOPlayer, vector<vector<char>> matrix) : RenderWindow(sf::VideoMode(1200, 600), "The world of Sonic"), MOmatrix(matrix)
 {
-    this->mOPlayer = mOPlayer;
+    this -> mOPlayer = mOPlayer;
 
     // Create a font
     if (!font.loadFromFile("files/SuperMario256.ttf"))
@@ -42,7 +42,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, MOPlayer &mOPlayer, vector<vector<cha
         {
             if(sol==MOmatrix[i][j])
             {
-                IGSol tmp(50 * j, window.getSize().y - (50 * (rows-i)));
+                IGSol tmp(50 * j, this->getSize().y - (50 * (rows-i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
@@ -52,7 +52,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, MOPlayer &mOPlayer, vector<vector<cha
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 50));
                 tmp.setFillColor(sf::Color::Yellow);
-                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
+                tmp.setPosition(tmp.getSize().y * j,this->getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
                 logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
@@ -61,7 +61,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, MOPlayer &mOPlayer, vector<vector<cha
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 50)); // TODO : mettre un rond pour plus de comprehension
                 tmp.setFillColor(sf::Color::Red);
-                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
+                tmp.setPosition(tmp.getSize().y * j,this->getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
             }
@@ -69,7 +69,7 @@ IGCarte::IGCarte(sf::RenderWindow &window, MOPlayer &mOPlayer, vector<vector<cha
             {
                 sf::RectangleShape tmp(sf::Vector2f(50, 50));
                 tmp.setFillColor(sf::Color::Blue);
-                tmp.setPosition(tmp.getSize().y * j,window.getSize().y - (tmp.getSize().y * (rows-i)));
+                tmp.setPosition(tmp.getSize().y * j,this->getSize().y - (tmp.getSize().y * (rows-i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
             }
@@ -87,27 +87,28 @@ IGCarte::~IGCarte()
 {
     //dtor
 
+    RenderWindow::~RenderWindow();
+
     logFile.close();
 }
 
 void IGCarte::update()
 {
-    window.clear(sf::Color::Black);
+    this->clear(sf::Color::Black);
 
-//    window.draw(MapNow);
     for(sf::RectangleShape x :IGmatrix)
-        window.draw(x);
-    window.draw(player);
+        this->draw(x);
+    this->draw(player);
 
     _move();
 
     // TODO : Verifier la mort et la fin de jeux
 
     text.setString("Nombre de vie : "+ std::to_string(mOPlayer.getNumberOfLife()));
-    window.draw(text);
+    this->draw(text);
 
 
-    window.display();
+    this->display();
 
 }
 
@@ -229,7 +230,7 @@ void IGCarte::_jump()
         }
     }
 
-    if (player.getPosition().y > window.getSize().y + playerBounds.getSize().y)
+    if (player.getPosition().y > this->getSize().y + playerBounds.getSize().y)
     {
         die();
     }
@@ -257,11 +258,11 @@ void IGCarte::die()
     mOPlayer.Die();
     reset();
     if(mOPlayer.getGameOver())
-        window.close();
+        this->close();
 }
 void IGCarte::succes()
 {
-    window.close();
+    this->close();
 }
 
 

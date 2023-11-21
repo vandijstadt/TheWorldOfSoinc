@@ -1,4 +1,4 @@
-==================== Mon Nov 20 14:01:25 2023 ====================
+==================== Tue Nov 21 12:12:49 2023 ====================
 Bloc rouge ajouté - Position : (1050, 0200), Taille : (50, 50)
 Bloc rouge ajouté - Position : (3550, 0200), Taille : (50, 50)
 Bloc rouge ajouté - Position : (0550, 0250), Taille : (50, 50)

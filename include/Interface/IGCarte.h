@@ -21,10 +21,10 @@ using std::endl;
 using std::cout;
 using std::cerr;
 
-class IGCarte
+class IGCarte : public sf::RenderWindow
 {
 public:
-    IGCarte(sf::RenderWindow &window, MOPlayer &player, std::vector<std::vector<char>> matrix);
+    IGCarte(MOPlayer &player, std::vector<std::vector<char>> matrix);
     virtual ~IGCarte();
 
     void update();
@@ -32,7 +32,6 @@ public:
 protected:
 
 private:
-    sf::RenderWindow &window;
 
     vector<vector<char>> MOmatrix;
     vector<sf::RectangleShape> IGmatrix;

@@ -5,33 +5,25 @@
 
 int main()
 {
-    // A supprimer ou supprimer dans igcarte
-    int SCREEN_WIDTH = 1200;
-    int SCREEN_HEIGHT = 600;
-
     MOMap moMap;
-
-    sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "The world of Sonic");
-    window.setActive(true);
-
     MOPlayer mOPlayer;
 
-    IGCarte igCarte(window, mOPlayer, moMap.Niveau(1));
+    IGCarte igCarte(mOPlayer, moMap.Niveau(1));
+    igCarte.setActive(true);
 
-    while (window.isOpen())
+
+    while (igCarte.isOpen())
     {
         sf::Event event;
-        while (window.pollEvent(event))
+        while (igCarte.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
             {
-                window.close();
+                igCarte.close();
             }
         }
 
         igCarte.update();
-
-        // Autre logique du jeu
 
     }
 
