@@ -256,7 +256,7 @@ void IGCarte::die()
 {
     mOPlayer.Die();
     reset();
-    if(mOPlayer.getGameOver())
+    if(mOPlayer.isGameOver())
         this->close();
 }
 void IGCarte::succes()

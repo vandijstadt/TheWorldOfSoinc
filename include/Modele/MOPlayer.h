@@ -19,8 +19,12 @@ public:
     int Die();
 
     //Recuperation
-    bool getGameOver();
+    bool isGameOver();
     int getNumberOfLife();
+    // TODO : a crée les fonctions
+    int getLevelNow();
+    void setLevelNow();
+    int getLevelMax();
 
 protected:
 

@@ -8,7 +8,7 @@ int main()
     MOMap moMap;
     MOPlayer mOPlayer;
 
-    IGCarte igCarte(mOPlayer, moMap.Niveau(1));
+    IGCarte igCarte(mOPlayer, moMap.Niveau(-1)); // -1 = Map test
     igCarte.setActive(true);
 
 

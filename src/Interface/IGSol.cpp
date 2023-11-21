@@ -13,6 +13,7 @@ IGSol::IGSol(int x, int y) : RectangleShape(sf::Vector2f(50, 50))
     }
 
     this->setTexture(&texture);
+this->setTextureRect(sf::IntRect(100, 100, 100, 100));
 }
 
 IGSol::~IGSol()

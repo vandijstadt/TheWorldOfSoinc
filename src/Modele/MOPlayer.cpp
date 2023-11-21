@@ -41,7 +41,7 @@ int MOPlayer::Die()
     return this->numberOfLife;
 }
 
-bool MOPlayer::getGameOver()
+bool MOPlayer::isGameOver()
 {
     return this->numberOfLife<=0;
 }

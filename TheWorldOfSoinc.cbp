@@ -52,7 +52,6 @@
 		</Linker>
 		<Unit filename="files/SuperMario256.ttf" />
 		<Unit filename="files/sol.png" />
-		<Unit filename="include/IGMob.h" />
 		<Unit filename="include/Interface/IGCarte.h" />
 		<Unit filename="include/Interface/IGDrapeau.h" />
 		<Unit filename="include/Interface/IGMob.h" />
