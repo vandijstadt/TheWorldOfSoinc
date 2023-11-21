@@ -52,13 +52,20 @@
 		</Linker>
 		<Unit filename="files/SuperMario256.ttf" />
 		<Unit filename="files/sol.png" />
+		<Unit filename="include/IGMob.h" />
 		<Unit filename="include/Interface/IGCarte.h" />
+		<Unit filename="include/Interface/IGDrapeau.h" />
+		<Unit filename="include/Interface/IGMob.h" />
+		<Unit filename="include/Interface/IGMur.h" />
 		<Unit filename="include/Interface/IGSol.h" />
 		<Unit filename="include/Modele/MOMap.h" />
 		<Unit filename="include/Modele/MOPlayer.h" />
 		<Unit filename="log.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Interface/IGCarte.cpp" />
+		<Unit filename="src/Interface/IGDrapeau.cpp" />
+		<Unit filename="src/Interface/IGMob.cpp" />
+		<Unit filename="src/Interface/IGMur.cpp" />
 		<Unit filename="src/Interface/IGSol.cpp" />
 		<Unit filename="src/Modele/MOMap.cpp" />
 		<Unit filename="src/Modele/MOPlayer.cpp" />

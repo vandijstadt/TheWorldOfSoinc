@@ -10,8 +10,12 @@
 #include <iomanip>
 #include <sstream>
 
-#include <Interface/IGSol.h>
 #include <Interface/IGCarte.h>
+#include <Interface/IGSol.h>
+#include <Interface/IGMur.h>
+#include <Interface/IGMob.h>
+#include <Interface/IGDrapeau.h>
+
 
 #include <Modele/MOPlayer.h>
 
@@ -55,7 +59,7 @@ private:
     char drapeau = '|';
     char mob = 'x';
     char mur = '*';
-    char mur_invisble = '[';
+//    char mur_invisble = '[';
 
     std::ofstream logFile;
 

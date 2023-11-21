@@ -46,32 +46,31 @@ IGCarte::IGCarte(MOPlayer &mOPlayer, vector<vector<char>> matrix) : RenderWindow
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
-                logFile << "Bloc vert ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+//                logFile << "Sol ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
             else if(mur == MOmatrix[i][j])
             {
-                sf::RectangleShape tmp(sf::Vector2f(50, 50));
-                tmp.setFillColor(sf::Color::Yellow);
-                tmp.setPosition(tmp.getSize().y * j,this->getSize().y - (tmp.getSize().y * (rows-i)));
+                IGMur tmp(50 * j, this->getSize().y - (50 * (rows-i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
-                logFile << "Bloc rouge ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+
+//                logFile << "Mur ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
             else if(mob==MOmatrix[i][j])
             {
-                sf::RectangleShape tmp(sf::Vector2f(50, 50)); // TODO : mettre un rond pour plus de comprehension
-                tmp.setFillColor(sf::Color::Red);
-                tmp.setPosition(tmp.getSize().y * j,this->getSize().y - (tmp.getSize().y * (rows-i)));
+                IGMob tmp(50 * j, this->getSize().y - (50 * (rows-i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
+
+//                logFile << "Mob ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
             else if(drapeau==MOmatrix[i][j])
             {
-                sf::RectangleShape tmp(sf::Vector2f(50, 50));
-                tmp.setFillColor(sf::Color::Blue);
-                tmp.setPosition(tmp.getSize().y * j,this->getSize().y - (tmp.getSize().y * (rows-i)));
+                IGDrapeau tmp(50 * j, this->getSize().y - (50 * (rows-i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
+
+//                logFile << "Drapeau ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
 
         }
