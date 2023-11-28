@@ -53,6 +53,7 @@ private:
 
     sf::Vector2f gravity; // Gravitational force
     sf::Vector2f velocity; // Initial velocity
+    sf::Vector2f previousPlayerPosition;
     bool isJumping = false;
 
     char sol = '-';

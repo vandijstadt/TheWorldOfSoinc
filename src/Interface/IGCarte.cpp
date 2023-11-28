@@ -123,10 +123,23 @@ void IGCarte::_move()
 
 void IGCarte::_forward()
 {
+    sf::Vector2f playerFrontPosition = player.getPosition() + sf::Vector2f(player.getGlobalBounds().width, 0.0f);
+    sf::FloatRect playerFrontBounds(playerFrontPosition, sf::Vector2f(1.0f, player.getGlobalBounds().height)); // Marge de 1 pixel pour la détection
+    for (const sf::RectangleShape &e : IGmatrix)
+    {
+        sf::FloatRect blockBounds = e.getGlobalBounds();
+
+        // Vérifier s'il y a une collision entre le joueur et la case juste devant lui
+        if (playerFrontBounds.intersects(blockBounds))
+        {
+            // Il y a une case devant le joueur, ne pas avancer
+            cerr << "Collision avec une case devant !" << endl;
+            return;
+        }
+    }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        // Vérifier s'il y a une case rouge juste devant le joueur
-//        sf::Vector2f playerPosition = player.getPosition();
         sf::FloatRect playerBounds = player.getGlobalBounds();
 
         for (const sf::RectangleShape &e : IGmatrix)
@@ -136,16 +149,16 @@ void IGCarte::_forward()
             // Vérifier s'il y a une collision entre le joueur et la case rouge
             if (playerBounds.intersects(blockBounds))
             {
-
                 actionWhenInteractWithRectange(e);
 
+                // Restaurer la position précédente du joueur
                 player.setPosition(e.getPosition().x - playerBounds.width - 1, player.getPosition().y);
                 cerr << "Collision avec une case rouge devant !" << endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
             }
         }
 
-        for(sf::RectangleShape &e :IGmatrix)
+        for (sf::RectangleShape &e : IGmatrix)
             e.move(-5.0f, 0.0f);
 
         cerr << "Avancer !" << endl;
@@ -154,6 +167,20 @@ void IGCarte::_forward()
 
 void IGCarte::_back()
 {
+    sf::Vector2f playerBackPosition = player.getPosition() - sf::Vector2f(1.0f, 0.0f); // Décalage d'un pixel vers la gauche pour le côté arrière
+    sf::FloatRect playerBackBounds(playerBackPosition, sf::Vector2f(1.0f, player.getGlobalBounds().height)); // Marge de 1 pixel pour la détection
+
+    for (const sf::RectangleShape &e : IGmatrix)
+    {
+        sf::FloatRect blockBounds = e.getGlobalBounds();
+
+        if (playerBackBounds.intersects(blockBounds))
+        {
+            // Il y a une case derrière le joueur, ne pas reculer
+            cerr << "Collision avec une case derrière !" << endl;
+            return;
+        }
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
 
