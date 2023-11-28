@@ -1,10 +1,11 @@
+// MainMenu.h
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-
+#include <iostream>
 #include <SFML/Graphics.hpp>
-class MainMenu
-{
+
+class MainMenu {
 public:
     MainMenu();
 

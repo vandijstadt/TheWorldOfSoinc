@@ -34,7 +34,7 @@
 
 int main() {
     // Créer une fenêtre SFML
-    sf::RenderWindow window(sf::VideoMode(800, 600), "The world of Soinc");
+      sf::RenderWindow window(sf::VideoMode(800,600), "The world of Soinc");
 
     // Créer une instance de la classe MainMenu
     MainMenu mainMenu;
