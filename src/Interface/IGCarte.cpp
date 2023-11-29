@@ -1,12 +1,16 @@
 #include "Interface/IGCarte.h"
 
-IGCarte::IGCarte(MOPlayer &mOPlayer, vector<vector<char>> matrix) : RenderWindow(sf::VideoMode(1200, 600), "The world of Sonic"), MOmatrix(matrix)
+IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vector2u windowSize, bool isFullscreen): RenderWindow(sf::VideoMode(1200, 600), "The world of Sonic"), MOmatrix(matrix), isFullscreen(isFullscreen)
 {
+    if (isFullscreen) {
+        this -> close();
+        create(sf::VideoMode::getDesktopMode(), "The world of Sonic", sf::Style::Fullscreen);
+    }
+
     this -> mOPlayer = mOPlayer;
 
     // Create a font
-    if (!font.loadFromFile("files/SuperMario256.ttf"))
-    {
+    if (!font.loadFromFile("files/SuperMario256.ttf")) {
         cout << EXIT_FAILURE << endl;
     }
 
@@ -14,6 +18,7 @@ IGCarte::IGCarte(MOPlayer &mOPlayer, vector<vector<char>> matrix) : RenderWindow
     player.setRadius(20);
     player.setFillColor(sf::Color::Blue);
     player.setPosition(200, 450);
+    textureSol.loadFromFile("files/sol.png");
 
     gravity = sf::Vector2f(0.0f, 0.5f);
     velocity = sf::Vector2f(0.0f, 0.0f);
@@ -23,67 +28,69 @@ IGCarte::IGCarte(MOPlayer &mOPlayer, vector<vector<char>> matrix) : RenderWindow
     // Date et heure actuel
     auto currentTime = std::chrono::system_clock::now();
     std::time_t time = std::chrono::system_clock::to_time_t(currentTime);
-    string timeString = std::ctime(&time);
+    string timeString = std::ctime( & time);
 
     string texte = "==================== " + timeString + " ===================="; // Le texte de debut de fichier
-    texte.erase(std::remove_if(texte.begin(), texte.end(), [](char c)
-    {
+    texte.erase(std::remove_if(texte.begin(), texte.end(), [](char c) {
         return c == '\n';
     }), texte.end()); // Supprime un retour a la ligne
 
-    logFile << texte << endl ;
+    logFile << texte << endl;
     int rows = MOmatrix.size();
     int cols = MOmatrix[0].size();
 
-    int i,j;
-    for (i = 0; i < rows; i++)
-    {
-        for (j = 0; j < cols; j++)
-        {
-            if(sol==MOmatrix[i][j])
-            {
-                IGSol tmp(50 * j, this->getSize().y - (50 * (rows-i)));
+    int i, j;
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            if (sol == MOmatrix[i][j]) {
+                IGSol tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
+                tmp.setTexture(&textureSol);
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
-//                logFile << "Sol ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
-            }
-            else if(mur == MOmatrix[i][j])
-            {
-                IGMur tmp(50 * j, this->getSize().y - (50 * (rows-i)));
+                //                logFile << "Sol ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+            } else if (mur == MOmatrix[i][j]) {
+                IGMur tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
+                sf::Texture texture;
+                if (!texture.loadFromFile("files/sol.png"))
+                {
+                    std::cout << EXIT_FAILURE << std::endl;
+                }
+
+                tmp.setTexture(&texture);
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
-//                logFile << "Mur ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
-            }
-            else if(mob==MOmatrix[i][j])
-            {
-                IGMob tmp(50 * j, this->getSize().y - (50 * (rows-i)));
+                //                logFile << "Mur ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+            } else if (mob == MOmatrix[i][j]) {
+                IGMob tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
-//                logFile << "Mob ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
-            }
-            else if(drapeau==MOmatrix[i][j])
-            {
-                IGDrapeau tmp(50 * j, this->getSize().y - (50 * (rows-i)));
+                //                logFile << "Mob ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+            } else if (drapeau == MOmatrix[i][j]) {
+                IGDrapeau tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
-//                logFile << "Drapeau ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+                //                logFile << "Drapeau ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
+            } else if (mur_invisble == MOmatrix[i][j]) {
+                IGMurInvisible tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
+                IGmatrix.push_back(tmp);
+                IGmatrixPostion.push_back(tmp.getPosition());
+
+                //                logFile << "Drapeau ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
 
         }
     }
-
 
     text.setFont(font);
     text.setCharacterSize(20);
 
 }
 
-IGCarte::~IGCarte()
-{
+IGCarte::~IGCarte() {
     //dtor
 
     RenderWindow::~RenderWindow();
@@ -91,28 +98,47 @@ IGCarte::~IGCarte()
     logFile.close();
 }
 
-void IGCarte::update()
-{
-    this->clear(sf::Color::Black);
+void IGCarte::update() {
+    this -> clear(sf::Color::Black);
+    sf::Texture exitTexture;
+    exitTexture.loadFromFile("files/exit.png");
+    sf::Sprite exitSprite;
+    exitSprite.setTexture(exitTexture);
+    sf::Vector2u windowSize = this->getSize();
+    exitSprite.setPosition(windowSize.x - exitSprite.getGlobalBounds().width, 0);
+    this-> draw(exitSprite);
 
-    for(sf::RectangleShape x :IGmatrix)
-        this->draw(x);
-    this->draw(player);
+    sf::Event event;
+   while (this->pollEvent(event))
+   {
+      if (event.type == sf::Event::MouseButtonPressed)
+      {
+          sf::Vector2i mousePos = sf::Mouse::getPosition(*this);
+          if (exitSprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
+          {
+              this->close();
+          }
+      }
+   }
+
+
+    for (sf::RectangleShape x: IGmatrix)
+        this -> draw(x);
+    this -> draw(player);
 
     _move();
 
     // TODO : Verifier la mort et la fin de jeux
 
-    text.setString("Nombre de vie : "+ std::to_string(mOPlayer.getNumberOfLife()));
-    this->draw(text);
+    text.setString("Nombre de vie : " + std::to_string(mOPlayer.getNumberOfLife()));
+    this -> draw(text);
 
 
-    this->display();
 
+    this -> display();
 }
 
-void IGCarte::_move()
-{
+void IGCarte::_move() {
     _forward();
     _back();
     _jump();
@@ -121,34 +147,28 @@ void IGCarte::_move()
 
 }
 
-void IGCarte::_forward()
-{
+void IGCarte::_forward() {
     sf::Vector2f playerFrontPosition = player.getPosition() + sf::Vector2f(player.getGlobalBounds().width, 0.0f);
     sf::FloatRect playerFrontBounds(playerFrontPosition, sf::Vector2f(1.0f, player.getGlobalBounds().height)); // Marge de 1 pixel pour la détection
-    for (const sf::RectangleShape &e : IGmatrix)
-    {
+    for (const sf::RectangleShape & e: IGmatrix) {
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
         // Vérifier s'il y a une collision entre le joueur et la case juste devant lui
-        if (playerFrontBounds.intersects(blockBounds))
-        {
+        if (playerFrontBounds.intersects(blockBounds)) {
             // Il y a une case devant le joueur, ne pas avancer
             cerr << "Collision avec une case devant !" << endl;
             return;
         }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         sf::FloatRect playerBounds = player.getGlobalBounds();
 
-        for (const sf::RectangleShape &e : IGmatrix)
-        {
+        for (const sf::RectangleShape & e: IGmatrix) {
             sf::FloatRect blockBounds = e.getGlobalBounds();
 
             // Vérifier s'il y a une collision entre le joueur et la case rouge
-            if (playerBounds.intersects(blockBounds))
-            {
+            if (playerBounds.intersects(blockBounds)) {
                 actionWhenInteractWithRectange(e);
 
                 // Restaurer la position précédente du joueur
@@ -158,43 +178,37 @@ void IGCarte::_forward()
             }
         }
 
-        for (sf::RectangleShape &e : IGmatrix)
+        for (sf::RectangleShape & e: IGmatrix)
             e.move(-5.0f, 0.0f);
 
         cerr << "Avancer !" << endl;
     }
 }
 
-void IGCarte::_back()
-{
+void IGCarte::_back() {
     sf::Vector2f playerBackPosition = player.getPosition() - sf::Vector2f(1.0f, 0.0f); // Décalage d'un pixel vers la gauche pour le côté arrière
     sf::FloatRect playerBackBounds(playerBackPosition, sf::Vector2f(1.0f, player.getGlobalBounds().height)); // Marge de 1 pixel pour la détection
 
-    for (const sf::RectangleShape &e : IGmatrix)
-    {
+    for (const sf::RectangleShape & e: IGmatrix) {
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
-        if (playerBackBounds.intersects(blockBounds))
-        {
+        if (playerBackBounds.intersects(blockBounds)) {
             // Il y a une case derrière le joueur, ne pas reculer
             cerr << "Collision avec une case derrière !" << endl;
             return;
         }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 
         // Vérifier s'il y a une case rouge juste devant le joueur
-//        sf::Vector2f playerPosition = player.getPosition();
+        //        sf::Vector2f playerPosition = player.getPosition();
         sf::FloatRect playerBounds = player.getGlobalBounds();
 
-        for (const sf::RectangleShape &e : IGmatrix)
-        {
+        for (const sf::RectangleShape & e: IGmatrix) {
             sf::FloatRect blockBounds = e.getGlobalBounds();
 
             // Vérifier s'il y a une collision entre le joueur et la case rouge
-            if (playerBounds.intersects(blockBounds))
-            {
+            if (playerBounds.intersects(blockBounds)) {
                 actionWhenInteractWithRectange(e);
 
                 player.setPosition(e.getPosition().x + blockBounds.width + 1, player.getPosition().y);
@@ -203,17 +217,17 @@ void IGCarte::_back()
             }
         }
 
-        for(sf::RectangleShape &e :IGmatrix)
+        for (sf::RectangleShape & e: IGmatrix)
             e.move(5.0f, 0.0f);
+
+
         std::cerr << "Reculer !" << std::endl;
     }
 }
 
-void IGCarte::_jump()
-{
+void IGCarte::_jump() {
     // Vérifier si la touche de saut est pressée et le personnage n'est pas déjà en train de sauter
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !isJumping)
-    {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !isJumping && velocity.y == 0) {
         // Appliquer une vélocité vers le haut pour le saut
         velocity.y = -15;
         isJumping = true;
@@ -227,13 +241,11 @@ void IGCarte::_jump()
     player.move(velocity);
 
     sf::FloatRect playerBounds = player.getGlobalBounds();
-    for (sf::RectangleShape &e : IGmatrix)
-    {
+    for (sf::RectangleShape & e: IGmatrix) {
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
         // Vérifier s'il y a une collision entre le joueur et une case rouge
-        if (playerBounds.intersects(blockBounds))
-        {
+        if (playerBounds.intersects(blockBounds)) {
             if (velocity.y > 0) // Si le personnage est en train de tomber
             {
                 // Ajuster la position du joueur au-dessus de la case
@@ -242,8 +254,7 @@ void IGCarte::_jump()
                 // Réinitialiser la vélocité verticale et l'état du saut
                 velocity.y = 0;
                 isJumping = false;
-            }
-            else if (velocity.y < 0) // Si le personnage est en train de monter
+            } else if (velocity.y < 0) // Si le personnage est en train de monter
             {
                 // Ajuster la position du joueur en-dessous de la case
                 player.setPosition(player.getPosition().x, blockBounds.top + blockBounds.height);
@@ -256,47 +267,38 @@ void IGCarte::_jump()
         }
     }
 
-    if (player.getPosition().y > this->getSize().y + playerBounds.getSize().y)
-    {
+    if (player.getPosition().y > this -> getSize().y + playerBounds.getSize().y) {
         die();
     }
 }
 
 // TODO Cree une fonction pour verifier si on touche une couleur sa fait quoi
 
+void IGCarte::actionWhenInteractWithRectange(sf::RectangleShape e) {
 
-void IGCarte::actionWhenInteractWithRectange(sf::RectangleShape e)
-{
-
-    if(e.getFillColor()==sf::Color::Red)  // TODO : gerer la mort par un mob
+    if (e.getFillColor() == sf::Color::Red) // TODO : gerer la mort par un mob
     {
         die();
-    }
-
-    else if(e.getFillColor()==sf::Color::Blue)  // TODO : gerer la reussite
+    } else if (e.getFillColor() == sf::Color::Blue) // TODO : gerer la reussite
     {
         succes();
     }
 }
 
-void IGCarte::die()
-{
+void IGCarte::die() {
     mOPlayer.Die();
     reset();
-    if(mOPlayer.isGameOver())
-        this->close();
+    if (mOPlayer.isGameOver())
+        this -> close();
 }
-void IGCarte::succes()
-{
-    this->close();
+void IGCarte::succes() {
+    this -> close();
 }
 
-
-void IGCarte::reset()
-{
+void IGCarte::reset() {
 
     int taille = IGmatrix.size();
-    for(int i = 0 ; i< taille; i++)
+    for (int i = 0; i < taille; i++)
         IGmatrix[i].setPosition(IGmatrixPostion[i]);
 
     player.setPosition(200, 450);
@@ -304,9 +306,9 @@ void IGCarte::reset()
 }
 
 // Pour la console
-string IGCarte::formatedNumber(int number)
-{
+string IGCarte::formatedNumber(int number) {
     std::ostringstream oss;
     oss << std::setw(4) << std::setfill('0') << number;
     return oss.str();
 }
+

@@ -33,25 +33,21 @@
 }*/
 
 int main() {
-    // Créer une fenêtre SFML
-      sf::RenderWindow window(sf::VideoMode(800,600), "The world of Soinc");
-
-    // Créer une instance de la classe MainMenu
+    sf::RenderWindow window(sf::VideoMode(800,600), "The world of Soinc",sf::Style::Titlebar);
     MainMenu mainMenu;
 
-
     while (window.isOpen()) {
+       sf::Event event;
+       while (window.pollEvent(event)) {
+           if (event.type == sf::Event::Closed) {
+               window.close();
+           }
+       }
 
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-
-        // Afficher le menu principal
-        mainMenu.displayMenu(window);
+       // Display the main menu
+       mainMenu.displayMenu(window);
     }
+
 
     return 0;
 }

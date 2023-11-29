@@ -1,51 +1,46 @@
 #include "Modele/MOPlayer.h"
 
-MOPlayer::MOPlayer():numberOfLife(5)
-{
+MOPlayer::MOPlayer(): numberOfLife(5) {
     //ctor
 }
-MOPlayer::MOPlayer(int numberOfLifeVar)
-{
+MOPlayer::MOPlayer(int numberOfLifeVar) {
     //ctor
-    numberOfLife=numberOfLifeVar;
+    numberOfLife = numberOfLifeVar;
 }
 
-MOPlayer::~MOPlayer()
-{
+MOPlayer::~MOPlayer() {
     //dtor
 }
 
-MOPlayer::MOPlayer(const MOPlayer& other)
-{
+MOPlayer::MOPlayer(const MOPlayer & other) {
     //copy ctor
 }
 
-MOPlayer& MOPlayer::operator=(const MOPlayer& rhs)
-{
-    if (&rhs != this)
-    {
-        this->numberOfLife=rhs.numberOfLife;
+MOPlayer & MOPlayer::operator = (const MOPlayer & rhs) {
+    if ( & rhs != this) {
+        this -> numberOfLife = rhs.numberOfLife;
     }
-    return *this;
+    return * this;
 }
 
-std::ostream& operator<<(std::ostream& out, const MOPlayer& MOPlayer)
-{
+std::ostream & operator << (std::ostream & out,
+    const MOPlayer & MOPlayer) {
     return out << "Number of life: " << std::to_string(MOPlayer.numberOfLife);
 }
 
-
-int MOPlayer::Die()
-{
-    this->numberOfLife-=1;
-    return this->numberOfLife;
+int MOPlayer::Die() {
+    this -> numberOfLife -= 1;
+    return this -> numberOfLife;
 }
 
-bool MOPlayer::isGameOver()
-{
-    return this->numberOfLife<=0;
+bool MOPlayer::isGameOver() {
+    return this -> numberOfLife <= 0;
 }
-int MOPlayer::getNumberOfLife()
-{
-    return this->numberOfLife;
+
+int MOPlayer::getNumberOfLife() {
+    return this -> numberOfLife;
+}
+
+sf::Vector2f MOPlayer::getPosition() const {
+  return position;
 }

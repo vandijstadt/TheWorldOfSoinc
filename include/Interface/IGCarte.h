@@ -15,6 +15,8 @@
 #include <Interface/IGMur.h>
 #include <Interface/IGMob.h>
 #include <Interface/IGDrapeau.h>
+#include <Interface/IGMurInvisible.h>
+#include <MainMenu.h>
 
 
 #include <Modele/MOPlayer.h>
@@ -28,7 +30,7 @@ using std::cerr;
 class IGCarte : public sf::RenderWindow
 {
 public:
-    IGCarte(MOPlayer &player, std::vector<std::vector<char>> matrix);
+    IGCarte(MOPlayer &player, std::vector<std::vector<char>> matrix, sf::Vector2u windowSize, bool isFullscreen);
     virtual ~IGCarte();
 
     void update();
@@ -47,8 +49,6 @@ private:
     sf::Texture map1;
     sf::Sprite MapNow;
 
-    int SCREEN_WIDTH = 1200;
-    int SCREEN_HEIGHT = 600;
     float speedOfPlayer=-0.1f;
 
     sf::Vector2f gravity; // Gravitational force
@@ -60,7 +60,9 @@ private:
     char drapeau = '|';
     char mob = 'x';
     char mur = '*';
-//    char mur_invisble = '[';
+    char mur_invisble = '[';
+    bool isFullscreen;
+    sf::Texture textureSol;
 
     std::ofstream logFile;
 

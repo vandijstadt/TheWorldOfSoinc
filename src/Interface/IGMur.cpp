@@ -2,7 +2,7 @@
 
 IGMur::IGMur(int x, int y) : RectangleShape(sf::Vector2f(50, 50))
 {
-//    ctor
+    //ctor
     this->setFillColor(sf::Color::Yellow);
     this->setPosition(x, y);
 

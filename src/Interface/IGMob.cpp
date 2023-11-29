@@ -2,7 +2,7 @@
 
 IGMob::IGMob(int x, int y): RectangleShape(sf::Vector2f(50, 50))
 {
-//    ctor
+    //ctor
     this->setFillColor(sf::Color::Red);
     this->setPosition(x, y);
 }

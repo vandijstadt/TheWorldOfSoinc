@@ -1,7 +1,7 @@
 #ifndef MOMOPlayer_H
 #define MOMOPlayer_H
 
-
+#include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
 
@@ -21,6 +21,7 @@ public:
     //Recuperation
     bool isGameOver();
     int getNumberOfLife();
+    sf::Vector2f getPosition() const;
     // TODO : a crée les fonctions
     int getLevelNow();
     void setLevelNow();
@@ -31,6 +32,7 @@ protected:
 private:
     MOPlayer(int numberOfLifeVar);
     int numberOfLife;
+    sf::Vector2f position;
 };
 
 #endif // MOMOPlayer_H
