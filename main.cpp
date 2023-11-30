@@ -32,20 +32,24 @@
     return 0;
 }*/
 
-int main() {
+int main()
+{
     sf::RenderWindow window(sf::VideoMode(800,600), "The world of Soinc",sf::Style::Titlebar);
     MainMenu mainMenu;
 
-    while (window.isOpen()) {
-       sf::Event event;
-       while (window.pollEvent(event)) {
-           if (event.type == sf::Event::Closed) {
-               window.close();
-           }
-       }
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+        }
 
-       // Display the main menu
-       mainMenu.displayMenu(window);
+        // Display the main menu
+        mainMenu.displayMenu(window);
     }
 
 

@@ -1,10 +1,9 @@
 #include "IGMob.h"
 
-IGMob::IGMob(int x, int y): RectangleShape(sf::Vector2f(50, 50))
+IGMob::IGMob(int x, int y): IGRectangleShape(x, y)
 {
     //ctor
-//    this->setFillColor(sf::Color::Red);
-    this->setPosition(x, y);
+    this->typeBlock="Mob";
 }
 
 IGMob::~IGMob()
@@ -12,7 +11,7 @@ IGMob::~IGMob()
     //dtor
 }
 
-IGMob::IGMob(const IGMob& other)
+IGMob::IGMob(const IGMob& other): IGRectangleShape(other)
 {
     //copy ctor
 }
@@ -24,6 +23,12 @@ IGMob& IGMob::operator=(const IGMob& rhs)
     return *this;
 }
 
-void IGMob::disappear() {
-   this->setPosition(-1000.f, -1000.f);
+void IGMob::disappear()
+{
+    this->setPosition(-1000.f, -1000.f);
+}
+
+string IGMob::TypeBlock()
+{
+    return typeBlock;
 }

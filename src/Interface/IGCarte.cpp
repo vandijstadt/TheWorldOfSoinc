@@ -15,10 +15,8 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
     this -> mOPlayer = mOPlayer;
 
     // Create a font
-    if (!font.loadFromFile("files/SuperMario256.ttf"))
-    {
-        cout << EXIT_FAILURE << endl;
-    }
+    font.loadFromFile("files/SuperMario256.ttf");
+
     textureSol.loadFromFile("files/sol.png");
     textureBrique.loadFromFile("files/brique.png");
     textureMob.loadFromFile("files/goomba.png");
@@ -195,7 +193,7 @@ void IGCarte::_forward()
     {
         sf::FloatRect playerBounds = player.getGlobalBounds();
 
-        for (const sf::RectangleShape & e: IGmatrix)
+        for (const IGRectangleShape & e: IGmatrix)
         {
             sf::FloatRect blockBounds = e.getGlobalBounds();
 
@@ -249,7 +247,7 @@ void IGCarte::_back()
         //        sf::Vector2f playerPosition = player.getPosition();
         sf::FloatRect playerBounds = player.getGlobalBounds();
 
-        for (const sf::RectangleShape & e: IGmatrix)
+        for (const IGRectangleShape & e: IGmatrix)
         {
             sf::FloatRect blockBounds = e.getGlobalBounds();
 
@@ -290,7 +288,7 @@ void IGCarte::_jump()
     player.move(velocity);
 
     sf::FloatRect playerBounds = player.getGlobalBounds();
-    for (sf::RectangleShape & e: IGmatrix)
+    for (IGRectangleShape & e: IGmatrix)
     {
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
@@ -327,22 +325,26 @@ void IGCarte::_jump()
 
 // TODO Cree une fonction pour verifier si on touche une couleur sa fait quoi
 
-void IGCarte::actionWhenInteractWithRectange(sf::RectangleShape e)
+void IGCarte::actionWhenInteractWithRectange(IGRectangleShape e)
 {
-   sf::Vector2f playerTopPosition = player.getPosition() + sf::Vector2f(0.0f, -10.0f);
-   sf::FloatRect playerTopBounds(playerTopPosition, sf::Vector2f(player.getGlobalBounds().width, 10.0f));
-   sf::FloatRect blockBounds = e.getGlobalBounds();
-   if (playerTopBounds.intersects(blockBounds))
-   {
-       if (e.getFillColor() == sf::Color::Red)
-       {
-           die();
-       }
-       else if (e.getFillColor() == sf::Color::Blue)
-       {
-           succes();
-       }
-   }
+    sf::Vector2f playerTopPosition = player.getPosition() + sf::Vector2f(0.0f, -10.0f);
+    sf::FloatRect playerTopBounds(playerTopPosition, sf::Vector2f(player.getGlobalBounds().width, 10.0f));
+    sf::FloatRect blockBounds = e.getGlobalBounds();
+
+    cout << e.TypeBlock() << endl;
+//    if (playerTopBounds.intersects(blockBounds))
+//    {
+        if (e.TypeBlock() == "Mob")
+        {
+            cout << true << endl;
+            die();
+        }
+        else if (e.TypeBlock() == "Drapeau")
+        {
+            cout << true << endl;
+            succes();
+        }
+//    }
 }
 
 
@@ -361,7 +363,6 @@ void IGCarte::succes()
 
 void IGCarte::reset()
 {
-
     int taille = IGmatrix.size();
     for (int i = 0; i < taille; i++)
         IGmatrix[i].setPosition(IGmatrixPostion[i]);

@@ -1,10 +1,10 @@
 #include "IGDrapeau.h"
 
-IGDrapeau::IGDrapeau(int x, int y): RectangleShape(sf::Vector2f(50, 50))
+IGDrapeau::IGDrapeau(int x, int y): IGRectangleShape(x, y)
 {
     //ctor
     this->setFillColor(sf::Color::Blue);
-    this->setPosition(x, y);
+    typeBlock="Drapeau";
 }
 
 IGDrapeau::~IGDrapeau()
@@ -12,14 +12,20 @@ IGDrapeau::~IGDrapeau()
     //dtor
 }
 
-IGDrapeau::IGDrapeau(const IGDrapeau& other)
+IGDrapeau::IGDrapeau(const IGDrapeau& other): IGRectangleShape(other)
 {
     //copy ctor
 }
+
 
 IGDrapeau& IGDrapeau::operator=(const IGDrapeau& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
     return *this;
+}
+
+string IGDrapeau::TypeBlock()
+{
+    return typeBlock;
 }

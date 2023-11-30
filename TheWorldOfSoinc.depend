@@ -4,7 +4,7 @@
 
 1698743253 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Action.h
 
-1701328175 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/main.cpp
+1701350387 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/main.cpp
 	<SFML/Graphics.hpp>
 	<Interface/IGCarte.h>
 	<MOMap.h>
@@ -502,10 +502,10 @@
 	<MainMenu.h>
 	<Modele/MOPlayer.h>
 
-1701338716 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGCarte.cpp
+1701352368 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGCarte.cpp
 	"Interface/IGCarte.h"
 
-1701338546 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGCarte.h
+1701350753 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGCarte.h
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
@@ -519,10 +519,11 @@
 	<Interface/IGMob.h>
 	<Interface/IGDrapeau.h>
 	<Interface/IGMurInvisible.h>
+	<IGRectangleShape.h>
 	<MainMenu.h>
 	<Modele/MOPlayer.h>
 
-1701327454 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOPlayer.cpp
+1701350383 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOPlayer.cpp
 	"Modele/MOPlayer.h"
 
 1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Modele/MOPlayer.h
@@ -530,35 +531,39 @@
 	<string>
 	<iostream>
 
-1701327454 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOMap.cpp
+1701339591 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Modele/MOMap.cpp
 	"MOMap.h"
 
 1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Modele/MOMap.h
 	<vector>
 
-1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGSol.h
+1701352020 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGSol.h
 	<SFML/Graphics.hpp>
+	<IGRectangleShape.h>
 	<iostream>
 
-1701327454 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGSol.cpp
+1701352099 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGSol.cpp
 	"IGSol.h"
 
-1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGMur.h
+1701352030 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGMur.h
 	<SFML/Graphics.hpp>
+	<IGRectangleShape.h>
 
-1701328242 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGMur.cpp
+1701352079 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGMur.cpp
 	"IGMur.h"
 
-1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGMob.h
+1701352036 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGMob.h
 	<SFML/Graphics.hpp>
+	<IGRectangleShape.h>
 
-1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGDrapeau.h
+1701352033 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGDrapeau.h
 	<SFML/Graphics.hpp>
+	<IGRectangleShape.h>
 
-1701327454 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGDrapeau.cpp
+1701352095 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGDrapeau.cpp
 	"IGDrapeau.h"
 
-1701328225 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGMob.cpp
+1701352106 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGMob.cpp
 	"IGMob.h"
 
 1701232788 /home/audric/Desktop/codeBlocksProjects/TheWorldOfSoinc/include/Interface/IGSol.h
@@ -1103,15 +1108,16 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGMurInvisible.h
+1701352027 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGMurInvisible.h
 	<SFML/Graphics.hpp>
+	<IGRectangleShape.h>
 	<iostream>
 
 1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/View/MainMenu.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1701328234 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGMurInvisible.cpp
+1701352088 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGMurInvisible.cpp
 	"IGMurInvisible.h"
 
 1701327454 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/View/MainMenu.cpp
@@ -1122,11 +1128,11 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/MainMenu.h
+1701350388 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/MainMenu.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1701327454 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/MainMenu.cpp
+1701350387 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/MainMenu.cpp
 	"MainMenu.h"
 	"MOMap.h"
 	"MOPlayer.h"
@@ -1138,4 +1144,16 @@
 	"MurInvisible.h"
 
 1701327454 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/MurInvisible.h
+
+1701339900 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/IGRectangleShape.cpp
+	"IGRectangleShape.h"
+
+1701340003 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/IGRectangleShape.h
+	<SFML/Graphics.hpp>
+
+1701352128 /home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/include/Interface/IGRectangleShape.h
+	<SFML/Graphics.hpp>
+
+1701352120 source:/home/vandijstadt/Bureau/Cours/DJV/TheWorldOfSoinc/src/Interface/IGRectangleShape.cpp
+	"IGRectangleShape.h"
 

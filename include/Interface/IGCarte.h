@@ -16,6 +16,7 @@
 #include <Interface/IGMob.h>
 #include <Interface/IGDrapeau.h>
 #include <Interface/IGMurInvisible.h>
+#include <IGRectangleShape.h>
 #include <MainMenu.h>
 
 
@@ -40,7 +41,7 @@ protected:
 private:
 
     vector<vector<char>> MOmatrix;
-    vector<sf::RectangleShape> IGmatrix;
+    vector<IGRectangleShape> IGmatrix;
     vector<sf::Vector2f> IGmatrixPostion;
 
     sf::Font font;
@@ -80,7 +81,7 @@ private:
     void die();
     void succes();
 
-    void actionWhenInteractWithRectange(sf::RectangleShape e);
+    void actionWhenInteractWithRectange(IGRectangleShape e);
 
     string formatedNumber(int number);
     void reset();

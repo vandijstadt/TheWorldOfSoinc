@@ -1,46 +1,57 @@
 #include "Modele/MOPlayer.h"
 
-MOPlayer::MOPlayer(): numberOfLife(5) {
+MOPlayer::MOPlayer(): numberOfLife(5)
+{
     //ctor
 }
-MOPlayer::MOPlayer(int numberOfLifeVar) {
+MOPlayer::MOPlayer(int numberOfLifeVar)
+{
     //ctor
     numberOfLife = numberOfLifeVar;
 }
 
-MOPlayer::~MOPlayer() {
+MOPlayer::~MOPlayer()
+{
     //dtor
 }
 
-MOPlayer::MOPlayer(const MOPlayer & other) {
+MOPlayer::MOPlayer(const MOPlayer & other)
+{
     //copy ctor
 }
 
-MOPlayer & MOPlayer::operator = (const MOPlayer & rhs) {
-    if ( & rhs != this) {
+MOPlayer & MOPlayer::operator = (const MOPlayer & rhs)
+{
+    if ( & rhs != this)
+    {
         this -> numberOfLife = rhs.numberOfLife;
     }
     return * this;
 }
 
 std::ostream & operator << (std::ostream & out,
-    const MOPlayer & MOPlayer) {
+                            const MOPlayer & MOPlayer)
+{
     return out << "Number of life: " << std::to_string(MOPlayer.numberOfLife);
 }
 
-int MOPlayer::Die() {
+int MOPlayer::Die()
+{
     this -> numberOfLife -= 1;
     return this -> numberOfLife;
 }
 
-bool MOPlayer::isGameOver() {
+bool MOPlayer::isGameOver()
+{
     return this -> numberOfLife <= 0;
 }
 
-int MOPlayer::getNumberOfLife() {
+int MOPlayer::getNumberOfLife()
+{
     return this -> numberOfLife;
 }
 
-sf::Vector2f MOPlayer::getPosition() const {
-  return position;
+sf::Vector2f MOPlayer::getPosition() const
+{
+    return position;
 }

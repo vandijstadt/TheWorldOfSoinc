@@ -5,7 +5,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-class MainMenu {
+class MainMenu
+{
 public:
     MainMenu();
     void displayMenu(sf::RenderWindow& window);
