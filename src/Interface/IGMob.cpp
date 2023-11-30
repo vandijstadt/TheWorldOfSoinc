@@ -23,3 +23,7 @@ IGMob& IGMob::operator=(const IGMob& rhs)
     //assignment operator
     return *this;
 }
+
+void IGMob::disappear() {
+   this->setPosition(-1000.f, -1000.f);
+}

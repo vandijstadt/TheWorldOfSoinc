@@ -10,6 +10,7 @@ public:
     virtual ~IGMob();
     IGMob(const IGMob& other);
     IGMob& operator=(const IGMob& other);
+    void disappear();
 
 protected:
 
