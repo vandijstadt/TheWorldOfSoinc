@@ -3,7 +3,7 @@
 IGDrapeau::IGDrapeau(int x, int y): IGRectangleShape(x, y)
 {
     //ctor
-    this->setFillColor(sf::Color::Blue);
+//    this->setFillColor(sf::Color::Blue);
     typeBlock="Drapeau";
 }
 

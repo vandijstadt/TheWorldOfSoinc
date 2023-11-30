@@ -22,6 +22,7 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
     textureMob.loadFromFile("files/goomba.png");
 //    textureBloc.loadFromFile("files/bloc.png");
     texturePlayer.loadFromFile("files/soinc.png");
+    textureDrapeau.loadFromFile("files/drapeau.png");
 
     // Create a point to represent the character
 //    player.setRadius(20);
@@ -85,6 +86,7 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
             else if (drapeau == MOmatrix[i][j])
             {
                 IGDrapeau tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
+                tmp.setTexture(&textureDrapeau);
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
@@ -327,27 +329,43 @@ void IGCarte::_jump()
 
 void IGCarte::actionWhenInteractWithRectange(IGRectangleShape e)
 {
-    sf::Vector2f playerTopPosition = player.getPosition() + sf::Vector2f(0.0f, -10.0f);
-    sf::FloatRect playerTopBounds(playerTopPosition, sf::Vector2f(player.getGlobalBounds().width, 10.0f));
-    sf::FloatRect blockBounds = e.getGlobalBounds();
+//    sf::Vector2f playerTopPosition = player.getPosition() + sf::Vector2f(0.0f, -10.0f);
+//    sf::FloatRect playerTopBounds(playerTopPosition, sf::Vector2f(player.getGlobalBounds().width, 10.0f));
+//    sf::FloatRect blockBounds = e.getGlobalBounds();
+    int topY = player.getPosition().y + player.getGlobalBounds().height;
 
-    cout << e.TypeBlock() << endl;
+//    cout << e.TypeBlock() << endl;
+//    cout<< "Block : "<< e.getPosition().y<<endl;
+//    cout << "Player : " << topY <<endl;
+
 //    if (playerTopBounds.intersects(blockBounds))
-//    {
-        if (e.TypeBlock() == "Mob")
+//{
+    if (e.TypeBlock() == "Mob")
+    {
+        if(e.getPosition().y == topY)
         {
-            cout << true << endl;
-            die();
+//            int tailleIGMAtrix=IGmatrix.size();
+            sf::Vector2f positionASupprimer = e.getPosition();
+            for(auto element = IGmatrix.begin(); element != IGmatrix.end(); ++element)
+            {
+                // Vérifie si la position actuelle correspond à la position à supprimer
+//            sf::Vector2f pos = element->getPosition();
+                if(element->getPosition() == positionASupprimer)
+                {
+                    IGmatrix.erase(element); // Supprime l'élément du vecteur
+                    return; // Sort de la boucle une fois que l'élément est supprimé
+                }
+            }
+
         }
-        else if (e.TypeBlock() == "Drapeau")
-        {
-            cout << true << endl;
-            succes();
-        }
+        die();
+    }
+    else if (e.TypeBlock() == "Drapeau")
+    {
+        succes();
+    }
 //    }
 }
-
-
 
 void IGCarte::die()
 {

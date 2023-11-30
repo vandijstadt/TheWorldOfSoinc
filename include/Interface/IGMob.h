@@ -11,7 +11,6 @@ public:
     virtual ~IGMob();
     IGMob(const IGMob& other);
     IGMob& operator=(const IGMob& other);
-    void disappear();// Il faut le delete pas le mettre a un autre endroit
     virtual string TypeBlock();
 
 protected:

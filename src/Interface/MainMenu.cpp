@@ -155,7 +155,7 @@ void MainMenu::executePlayButtonCode(sf::RenderWindow & window)
         windowSize = window.getSize();
     }
 
-    IGCarte igCarte(mOPlayer, moMap.Niveau(1), windowSize, isFullscreen);
+    IGCarte igCarte(mOPlayer, moMap.Niveau(-1), windowSize, isFullscreen);
     igCarte.setActive(true);
 
     while (igCarte.isOpen())

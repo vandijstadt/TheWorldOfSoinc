@@ -56,6 +56,7 @@
 		<Unit filename="files/SuperMario256.ttf" />
 		<Unit filename="files/bloc.png" />
 		<Unit filename="files/brique.png" />
+		<Unit filename="files/drapeau.png" />
 		<Unit filename="files/exit.png" />
 		<Unit filename="files/goomba.png" />
 		<Unit filename="files/koopa.png" />

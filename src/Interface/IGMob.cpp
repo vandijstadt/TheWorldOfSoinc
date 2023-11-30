@@ -23,11 +23,6 @@ IGMob& IGMob::operator=(const IGMob& rhs)
     return *this;
 }
 
-void IGMob::disappear()
-{
-    this->setPosition(-1000.f, -1000.f);
-}
-
 string IGMob::TypeBlock()
 {
     return typeBlock;

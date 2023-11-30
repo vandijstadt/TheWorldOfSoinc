@@ -68,6 +68,7 @@ private:
     sf::Texture textureMob;
 //    sf::Texture textureBloc;
     sf::Texture texturePlayer;
+    sf::Texture textureDrapeau;
 
     std::ofstream logFile;
 

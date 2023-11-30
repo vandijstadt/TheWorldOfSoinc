@@ -14,17 +14,17 @@
 	</File>
 	<File name="src/Interface/MainMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4744" topLine="130" />
+			<Cursor1 position="4988" topLine="151" />
 		</Cursor>
 	</File>
 	<File name="include/Interface/IGDrapeau.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="350" topLine="0" />
+			<Cursor1 position="350" topLine="4" />
 		</Cursor>
 	</File>
 	<File name="src/Modele/MOMap.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1097" topLine="27" />
+			<Cursor1 position="12103" topLine="68" />
 		</Cursor>
 	</File>
 	<File name="include/Interface/IGMurInvisible.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -34,7 +34,7 @@
 	</File>
 	<File name="src/Interface/IGCarte.cpp" open="1" top="1" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7148" topLine="200" />
+			<Cursor1 position="12585" topLine="342" />
 		</Cursor>
 	</File>
 	<File name="src/Interface/IGMur.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,9 +52,9 @@
 			<Collapse line="20" />
 		</Folding>
 	</File>
-	<File name="include/Interface/IGCarte.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="include/Interface/IGCarte.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1714" topLine="76" />
+			<Cursor1 position="847" topLine="35" />
 		</Cursor>
 	</File>
 	<File name="src/Interface/IGSol.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -69,7 +69,7 @@
 	</File>
 	<File name="include/Interface/IGMob.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="389" topLine="0" />
+			<Cursor1 position="260" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/Interface/IGMurInvisible.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -79,12 +79,12 @@
 	</File>
 	<File name="src/Interface/IGDrapeau.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="150" topLine="0" />
+			<Cursor1 position="520" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/Interface/IGMob.cpp" open="1" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Interface/IGMob.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="94" topLine="0" />
+			<Cursor1 position="377" topLine="12" />
 		</Cursor>
 	</File>
 	<File name="include/Interface/IGMur.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -97,5 +97,5 @@
 			<Cursor1 position="336" topLine="0" />
 		</Cursor>
 	</File>
-	<EditorTabsLayout layout="ed4f8510656892e7362aea0c00000002=*0;TheWorldOfSoinc:src/Interface/IGCarte.cpp,1;TheWorldOfSoinc:src/Interface/IGMob.cpp@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=574;besth=298;minw=574;minh=298;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ed4f8510656892e7362aea0c00000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=0;besth=0;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=10|" />
+	<EditorTabsLayout layout="ed33e4006568b28e57b727fd00000002=*0;TheWorldOfSoinc:src/Interface/IGCarte.cpp@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=574;besth=187;minw=574;minh=187;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ed33e4006568b28e57b727fd00000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=0;besth=0;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=10|" />
 </CodeBlocks_layout_file>
