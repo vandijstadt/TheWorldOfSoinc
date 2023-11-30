@@ -19,12 +19,18 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
     {
         cout << EXIT_FAILURE << endl;
     }
+    textureSol.loadFromFile("files/sol.png");
+    textureBrique.loadFromFile("files/brique.png");
+    textureMob.loadFromFile("files/goomba.png");
+//    textureBloc.loadFromFile("files/bloc.png");
+    texturePlayer.loadFromFile("files/soinc.png");
 
     // Create a point to represent the character
-    player.setRadius(20);
-    player.setFillColor(sf::Color::Blue);
+//    player.setRadius(20);
     player.setPosition(200, 450);
-    textureSol.loadFromFile("files/sol.png");
+    player.setScale(0.2f, 0.2f);
+    player.setTexture(texturePlayer);
+
 
     gravity = sf::Vector2f(0.0f, 0.5f);
     velocity = sf::Vector2f(0.0f, 0.0f);
@@ -60,16 +66,10 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
 
                 //                logFile << "Sol ajouté - Position : (" << formatedNumber(tmp.getPosition().x) << ", " << formatedNumber(tmp.getPosition().y) << "), Taille : (" << tmp.getSize().x << ", " << tmp.getSize().y << ")" << endl;
             }
-            else if (mur == MOmatrix[i][j])
+            else if (brique == MOmatrix[i][j])
             {
                 IGMur tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
-                sf::Texture texture;
-                if (!texture.loadFromFile("files/sol.png"))
-                {
-                    std::cout << EXIT_FAILURE << std::endl;
-                }
-
-                tmp.setTexture(&texture);
+                tmp.setTexture(&textureBrique);
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
@@ -78,6 +78,7 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
             else if (mob == MOmatrix[i][j])
             {
                 IGMob tmp(50 * j, this -> getSize().y - (50 * (rows - i)));
+                tmp.setTexture(&textureMob);
                 IGmatrix.push_back(tmp);
                 IGmatrixPostion.push_back(tmp.getPosition());
 
@@ -119,7 +120,7 @@ IGCarte::~IGCarte()
 
 void IGCarte::update()
 {
-    this -> clear(sf::Color::Black);
+    this -> clear(sf::Color::Blue);
     sf::Vector2f viewSize = sf::Vector2f(1200.f,600.f);
 
     sf::Texture exitTexture;

@@ -45,9 +45,9 @@ private:
 
     sf::Font font;
     sf::Text text;
-    sf::CircleShape player;
-    sf::Texture map1;
-    sf::Sprite MapNow;
+    sf::Sprite player;
+//    sf::Texture map1;
+//    sf::Sprite MapNow;
 
     float speedOfPlayer=-0.1f;
 
@@ -57,12 +57,16 @@ private:
     bool isJumping = false;
 
     char sol = '-';
-    char drapeau = '|';
+    char brique = '*';
     char mob = 'x';
-    char mur = '*';
+    char drapeau = '|';
     char mur_invisble = '[';
     bool isFullscreen;
     sf::Texture textureSol;
+    sf::Texture textureBrique;
+    sf::Texture textureMob;
+//    sf::Texture textureBloc;
+    sf::Texture texturePlayer;
 
     std::ofstream logFile;
 
