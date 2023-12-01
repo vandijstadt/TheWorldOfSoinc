@@ -28,6 +28,7 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
 //    player.setRadius(20);
     player.setPosition(200, 450);
     player.setScale(0.2f, 0.2f);
+
     player.setTexture(texturePlayer);
 
 
@@ -168,18 +169,20 @@ void IGCarte::_move()
 
 void IGCarte::_forward()
 {
-    sf::Vector2f playerFrontPosition = player.getPosition() + sf::Vector2f(player.getGlobalBounds().width, 0.0f);
-    sf::FloatRect playerFrontBounds(playerFrontPosition, sf::Vector2f(1.0f, player.getGlobalBounds().height));
-    for (const sf::RectangleShape & e: IGmatrix)
+    sf::Vector2f playerFrontPosition = player.getPosition() + sf::Vector2f(player.getGlobalBounds().width+2, 1.0f);
+    sf::FloatRect playerFrontBounds(playerFrontPosition, sf::Vector2f(1.0f, 1.0f));
+
+    for (IGRectangleShape &e: IGmatrix)
     {
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
         // Vérifier s'il y a une collision entre le joueur et la case juste devant lui
         if (playerFrontBounds.intersects(blockBounds))
         {
-            if (e.getFillColor() == sf::Color::Red)
+            if (e.TypeBlock()=="Mob")
             {
                 // La case est rouge, le joueur peut avancer
+                cerr << "Collision avec un mob devant !" << endl;
                 continue;
             }
             else
@@ -258,7 +261,7 @@ void IGCarte::_back()
             {
                 actionWhenInteractWithRectange(e);
 
-                player.setPosition(e.getPosition().x + blockBounds.width + 1, player.getPosition().y);
+                player.setPosition(e.getPosition().x + blockBounds.width, player.getPosition().y);
                 std::cerr << "Collision avec une case rouge derriere !" << std::endl;
                 return; // Ne pas déplacer le joueur s'il y a une collision
             }
@@ -329,9 +332,6 @@ void IGCarte::_jump()
 
 void IGCarte::actionWhenInteractWithRectange(IGRectangleShape e)
 {
-//    sf::Vector2f playerTopPosition = player.getPosition() + sf::Vector2f(0.0f, -10.0f);
-//    sf::FloatRect playerTopBounds(playerTopPosition, sf::Vector2f(player.getGlobalBounds().width, 10.0f));
-//    sf::FloatRect blockBounds = e.getGlobalBounds();
     int topY = player.getPosition().y + player.getGlobalBounds().height;
 
 //    cout << e.TypeBlock() << endl;
