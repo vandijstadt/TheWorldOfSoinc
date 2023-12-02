@@ -169,7 +169,7 @@ void MainMenu::executePlayButtonCode(sf::RenderWindow & window)
             }
         }
 
-        igCarte.update();
+        igCarte.update(&event);
     }
 }
 

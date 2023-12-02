@@ -34,7 +34,7 @@ public:
     IGCarte(MOPlayer &player, std::vector<std::vector<char>> matrix, sf::Vector2u windowSize, bool isFullscreen);
     virtual ~IGCarte();
 
-    void update();
+    void update(sf::Event *event);
 
 protected:
 

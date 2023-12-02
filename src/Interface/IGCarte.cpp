@@ -122,7 +122,7 @@ IGCarte::~IGCarte()
     logFile.close();
 }
 
-void IGCarte::update()
+void IGCarte::update(sf::Event *event)
 {
     this -> clear(sf::Color::Blue);
 
@@ -133,7 +133,7 @@ void IGCarte::update()
     this->draw(exitSprite);
 
     sf::Vector2i mousePos = sf::Mouse::getPosition(*this);
-    if (exitSprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
+    if (event->mouseButton.button == sf::Mouse::Left && exitSprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
     {
         this->close();
     }
