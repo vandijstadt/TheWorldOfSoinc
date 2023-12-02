@@ -19,7 +19,7 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
 
     textureSol.loadFromFile("files/sol.png");
     textureBrique.loadFromFile("files/brique.png");
-    textureMob.loadFromFile("files/goomba.png");
+    textureMob.loadFromFile("files/spike.png");
 //    textureBloc.loadFromFile("files/bloc.png");
     texturePlayer.loadFromFile("files/soinc.png");
     textureDrapeau.loadFromFile("files/drapeau.png");
@@ -179,18 +179,7 @@ void IGCarte::_forward()
         // Vérifier s'il y a une collision entre le joueur et la case juste devant lui
         if (playerFrontBounds.intersects(blockBounds))
         {
-            if (e.TypeBlock()=="Mob")
-            {
-                // La case est rouge, le joueur peut avancer
-                cerr << "Collision avec un mob devant !" << endl;
-                continue;
-            }
-            else
-            {
-                // Il y a une case devant le joueur, ne pas avancer
-                cerr << "Collision avec une case devant !" << endl;
-                return;
-            }
+            return;
         }
     }
 
@@ -223,26 +212,16 @@ void IGCarte::_forward()
 
 void IGCarte::_back()
 {
-    sf::Vector2f playerBackPosition = player.getPosition() - sf::Vector2f(1.0f, 0.0f); // Décalage d'un pixel vers la gauche pour le côté arrière
+    sf::Vector2f playerBackPosition = player.getPosition() - sf::Vector2f(0.0f, 0.0f); // Décalage d'un pixel vers la gauche pour le côté arrière
     sf::FloatRect playerBackBounds(playerBackPosition, sf::Vector2f(1.0f, player.getGlobalBounds().height)); // Marge de 1 pixel pour la détection
 
-    for (const sf::RectangleShape & e: IGmatrix)
+    for (IGRectangleShape & e: IGmatrix)
     {
         sf::FloatRect blockBounds = e.getGlobalBounds();
 
         if (playerBackBounds.intersects(blockBounds))
         {
-            if (e.getFillColor() == sf::Color::Red)
-            {
-                // La case est rouge, le joueur peut avancer
-                continue;
-            }
-            else
-            {
-                // Il y a une case derrière le joueur, ne pas reculer
-                cerr << "Collision avec une case derrière !" << endl;
-                return;
-            }
+            return;
         }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -332,32 +311,11 @@ void IGCarte::_jump()
 
 void IGCarte::actionWhenInteractWithRectange(IGRectangleShape e)
 {
-    int topY = player.getPosition().y + player.getGlobalBounds().height;
-
-//    cout << e.TypeBlock() << endl;
-//    cout<< "Block : "<< e.getPosition().y<<endl;
-//    cout << "Player : " << topY <<endl;
 
 //    if (playerTopBounds.intersects(blockBounds))
 //{
     if (e.TypeBlock() == "Mob")
     {
-        if(e.getPosition().y == topY)
-        {
-//            int tailleIGMAtrix=IGmatrix.size();
-            sf::Vector2f positionASupprimer = e.getPosition();
-            for(auto element = IGmatrix.begin(); element != IGmatrix.end(); ++element)
-            {
-                // Vérifie si la position actuelle correspond à la position à supprimer
-//            sf::Vector2f pos = element->getPosition();
-                if(element->getPosition() == positionASupprimer)
-                {
-                    IGmatrix.erase(element); // Supprime l'élément du vecteur
-                    return; // Sort de la boucle une fois que l'élément est supprimé
-                }
-            }
-
-        }
         die();
     }
     else if (e.TypeBlock() == "Drapeau")
