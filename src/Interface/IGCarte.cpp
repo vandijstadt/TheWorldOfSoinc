@@ -23,12 +23,15 @@ IGCarte::IGCarte(MOPlayer & mOPlayer, vector < vector < char >> matrix, sf::Vect
 //    textureBloc.loadFromFile("files/bloc.png");
     texturePlayer.loadFromFile("files/soinc.png");
     textureDrapeau.loadFromFile("files/drapeau.png");
+    exitTexture.loadFromFile("files/exit.png");
 
-    // Create a point to represent the character
+    exitSprite.setTexture(exitTexture);
+//    sf::Vector2f viewSize = sf::Vector2f(1200.f,600.f);
+    exitSprite.setPosition(1200.f - exitSprite.getGlobalBounds().width, 0);
+
 //    player.setRadius(20);
     player.setPosition(200, 450);
     player.setScale(0.2f, 0.2f);
-
     player.setTexture(texturePlayer);
 
 
@@ -122,31 +125,18 @@ IGCarte::~IGCarte()
 void IGCarte::update()
 {
     this -> clear(sf::Color::Blue);
-    sf::Vector2f viewSize = sf::Vector2f(1200.f,600.f);
 
-    sf::Texture exitTexture;
-    exitTexture.loadFromFile("files/exit.png");
-    sf::Sprite exitSprite;
-    exitSprite.setTexture(exitTexture);
-    exitSprite.setPosition(viewSize.x - exitSprite.getGlobalBounds().width, 0);
-    this->draw(exitSprite);
-
-    sf::Event event;
-    while (this->pollEvent(event))
-    {
-        if (event.type == sf::Event::MouseButtonPressed)
-        {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(*this);
-            if (exitSprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
-            {
-                this->close();
-            }
-        }
-    }
 
     for (sf::RectangleShape x: IGmatrix)
         this -> draw(x);
     this -> draw(player);
+    this->draw(exitSprite);
+
+    sf::Vector2i mousePos = sf::Mouse::getPosition(*this);
+    if (exitSprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
+    {
+        this->close();
+    }
 
     _move();
 
@@ -312,8 +302,6 @@ void IGCarte::_jump()
 void IGCarte::actionWhenInteractWithRectange(IGRectangleShape e)
 {
 
-//    if (playerTopBounds.intersects(blockBounds))
-//{
     if (e.TypeBlock() == "Mob")
     {
         die();
@@ -322,7 +310,6 @@ void IGCarte::actionWhenInteractWithRectange(IGRectangleShape e)
     {
         succes();
     }
-//    }
 }
 
 void IGCarte::die()

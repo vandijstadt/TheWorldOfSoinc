@@ -47,6 +47,7 @@ private:
     sf::Font font;
     sf::Text text;
     sf::Sprite player;
+    sf::Sprite exitSprite;
 //    sf::Texture map1;
 //    sf::Sprite MapNow;
 
@@ -69,6 +70,7 @@ private:
 //    sf::Texture textureBloc;
     sf::Texture texturePlayer;
     sf::Texture textureDrapeau;
+    sf::Texture exitTexture;
 
     std::ofstream logFile;
 
